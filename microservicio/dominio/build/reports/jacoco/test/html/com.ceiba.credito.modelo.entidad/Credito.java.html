@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Credito.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dominio</a> &gt; <a href="index.source.html" class="el_package">com.ceiba.credito.modelo.entidad</a> &gt; <span class="el_source">Credito.java</span></div><h1>Credito.java</h1><pre class="source lang-java linenums">package com.ceiba.credito.modelo.entidad;
+
+import com.ceiba.dinero.modelo.entidad.Dinero;
+import com.ceiba.dominio.ValidadorArgumento;
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.identificacion.modelo.entidad.Identificacion;
+import lombok.Getter;
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.validarPositivo;
+import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
+import static com.ceiba.dominio.ValidadorArgumento.validarPlazo;
+import java.util.Date;
+
+@Getter
+public class Credito {
+    private static final String LA_IDENTIFICACIONS_ES_OBLIGATORIA = &quot;El campo de identificaciÃ³n es obligatorio&quot;;
+    private static final String EL_VALOR_DE_INGRESOS_ES_OBLIGATORIO = &quot;El campo de valor de ingresos mensuales es obligatorio&quot;;
+    private static final String EL_VALOR_DE_EGRESOS_ES_OBLIGATORIO = &quot;El campo de valor de egresos mensuales es obligatorio&quot;;
+    private static final String EL_VALOR_DE_PLAZO_ES_OBLIGATORIO = &quot;El campo de valor de plazo es obligatorio&quot;;
+    private static final String EL_VALOR_DE_INGRESOS_DEBE_SER_MAYOR_A_CERO = &quot;El valor de ingresos  mensuales debe ser mayor a cero&quot;;
+    private static final String EL_VALOR_DE_EGRESOS_DEBE_SER_MENOR_A_INGRESOS = &quot;El valor de egeresos  mensuales debe ser menor que los ingresos&quot;;
+    private static final String EL_VALOR_PERMITIDO_PARA_EL_PLAZO_ES_INCORRECTO = &quot;El valor permitido para el plazo es 3, 6 o 12 meses&quot;;
+    private static final String ESTADO_INICIAL = &quot;Ingresado&quot;;
+<span class="fc" id="L25">    private Long codigo;</span>
+<span class="fc" id="L26">    private Identificacion identificacion;</span>
+<span class="nc" id="L27">    private Date fechaSolicitud;</span>
+<span class="fc" id="L28">    private Dinero ingresoMensual;</span>
+<span class="fc" id="L29">    private Dinero egresoMensual;</span>
+<span class="fc" id="L30">    private Integer plazo;</span>
+<span class="nc" id="L31">    private Dinero valorPrestamo;</span>
+<span class="nc" id="L32">    private Dinero valorDividendo;</span>
+<span class="nc" id="L33">    private Date fechaPrimeraCuota;</span>
+<span class="nc" id="L34">    private String estado;</span>
+
+<span class="fc" id="L36">    public Credito(Identificacion identificacion, Dinero ingresoMensual, Dinero egresoMensual, Integer plazo) {</span>
+<span class="fc" id="L37">        validarObligatorio(identificacion,LA_IDENTIFICACIONS_ES_OBLIGATORIA);</span>
+<span class="fc" id="L38">        validarObligatorio(ingresoMensual,EL_VALOR_DE_INGRESOS_ES_OBLIGATORIO);</span>
+<span class="fc" id="L39">        validarObligatorio(egresoMensual,EL_VALOR_DE_EGRESOS_ES_OBLIGATORIO);</span>
+<span class="fc" id="L40">        validarObligatorio(plazo,EL_VALOR_DE_PLAZO_ES_OBLIGATORIO);</span>
+<span class="fc" id="L41">        validarPlazo(plazo,EL_VALOR_PERMITIDO_PARA_EL_PLAZO_ES_INCORRECTO);</span>
+<span class="fc" id="L42">        validarPositivo(ingresoMensual.getValor(),EL_VALOR_DE_INGRESOS_DEBE_SER_MAYOR_A_CERO);</span>
+<span class="fc" id="L43">        validarMenor(egresoMensual.getValor(), ingresoMensual.getValor(),EL_VALOR_DE_EGRESOS_DEBE_SER_MENOR_A_INGRESOS);</span>
+<span class="fc" id="L44">        this.identificacion = identificacion;</span>
+<span class="fc" id="L45">        this.ingresoMensual = ingresoMensual;</span>
+<span class="fc" id="L46">        this.egresoMensual = egresoMensual;</span>
+<span class="fc" id="L47">        this.plazo = plazo;</span>
+<span class="fc" id="L48">        this.estado = ESTADO_INICIAL;</span>
+<span class="fc" id="L49">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ceiba.credito.servicio.ServicioActualizarCreditoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-02-22T21:13:13" hostname="DESKTOP-2GI24IG" time="4.89">
+  <properties/>
+  <testcase name="Deberia lanzar excepción por solicitud de crédito no existente" classname="com.ceiba.credito.servicio.ServicioActualizarCreditoTest" time="4.303"/>
+  <testcase name="Deberia lanzar excepción por objeto crédito no creado" classname="com.ceiba.credito.servicio.ServicioActualizarCreditoTest" time="0.004"/>
+  <testcase name="Debería actualizar una solicitud de crédito correctamente" classname="com.ceiba.credito.servicio.ServicioActualizarCreditoTest" time="0.568"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

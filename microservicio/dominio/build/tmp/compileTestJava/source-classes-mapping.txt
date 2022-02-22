@@ -1,0 +1,18 @@
+com/ceiba/dinero/modelo/entidad/DineroTest.java
+ com.ceiba.dinero.modelo.entidad.DineroTest
+com/ceiba/credito/servicio/ServicioEliminarCreditoTest.java
+ com.ceiba.credito.servicio.ServicioEliminarCreditoTest
+com/ceiba/credito/servicio/ServicioCrearCreditoTest.java
+ com.ceiba.credito.servicio.ServicioCrearCreditoTest
+com/ceiba/credito/modelo/entidad/CreditoTest.java
+ com.ceiba.credito.modelo.entidad.CreditoTest
+com/ceiba/credito/servicio/ServicioActualizarCreditoTest.java
+ com.ceiba.credito.servicio.ServicioActualizarCreditoTest
+com/ceiba/dinero/modelo/entidad/DineroTestDataBuilder.java
+ com.ceiba.dinero.modelo.entidad.DineroTestDataBuilder
+com/ceiba/identificacion/modelo/entidad/IdentificacionTestDataBuilder.java
+ com.ceiba.identificacion.modelo.entidad.IdentificacionTestDataBuilder
+com/ceiba/credito/modelo/entidad/CreditoTestDataBuilder.java
+ com.ceiba.credito.modelo.entidad.CreditoTestDataBuilder
+com/ceiba/identificacion/modelo/entidad/IdentificacionTest.java
+ com.ceiba.identificacion.modelo.entidad.IdentificacionTest
