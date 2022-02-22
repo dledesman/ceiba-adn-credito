@@ -1,4 +1,4 @@
-rootProject.name = 'credito'
+rootProject.name = 'ceiba-adn-credito'
 
 include ':infraestructura'
 include ':aplicacion'

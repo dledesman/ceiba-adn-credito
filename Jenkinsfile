@@ -40,7 +40,7 @@ pipeline {
         echo "------------>Compile & Unit Tests<------------"
         echo "------------>compile & Unit Tests<------------"
         sh 'chmod +x gradlew'
-        sh './gradlew --b ./build.gradle test'
+        sh './comun/gradlew --b ./microservicio/build.gradle test'
       }
     }
 
@@ -71,7 +71,7 @@ pipeline {
     }
     success {
       echo 'This will run only if successful'
-      junit './dominio/build/test-results/test/*.xml' //RUTA RELATIVA DE LOS ARCHIVOS .XML
+      junit './microservicio/dominio/build/test-results/test/*.xml' //RUTA RELATIVA DE LOS ARCHIVOS .XML
     }
     failure {
       echo 'This will run only if failed'
