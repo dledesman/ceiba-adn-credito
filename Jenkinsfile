@@ -1,4 +1,3 @@
-@Library('ceiba-jenkins-library')
 pipeline {
   agent {
     label 'ADN Credito'
@@ -7,7 +6,7 @@ pipeline {
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
- 	disableConcurrentBuilds()
+ 	    disableConcurrentBuilds()
   }
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
@@ -48,9 +47,6 @@ pipeline {
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
             sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:${nombre.projectKey}',
-                sonarName:"'CeibaADN-Credito(duval.ledesma)'",
-                sonarPathProperties:'./sonar-project.properties')
 
 
         }
