@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'ADN Credito'
+    label 'Slave_Induccio'
   }
 
   //Opciones específicas de Pipeline dentro del Pipeline
