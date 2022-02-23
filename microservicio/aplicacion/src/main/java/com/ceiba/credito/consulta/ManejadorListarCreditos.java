@@ -2,8 +2,6 @@ package com.ceiba.credito.consulta;
 
 import com.ceiba.credito.modelo.dto.DtoCredito;
 import com.ceiba.credito.puerto.dao.DaoCredito;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
-import com.ceiba.usuario.puerto.dao.DaoUsuario;
 
 import java.util.List;
 
