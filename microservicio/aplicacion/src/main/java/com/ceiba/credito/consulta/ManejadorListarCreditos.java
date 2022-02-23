@@ -1,5 +1,7 @@
 package com.ceiba.credito.consulta;
 
+import com.ceiba.credito.modelo.dto.DtoCredito;
+import com.ceiba.credito.puerto.dao.DaoCredito;
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.puerto.dao.DaoUsuario;
 
@@ -7,13 +9,13 @@ import java.util.List;
 
 public class ManejadorListarCreditos {
 
-    private DaoUsuario daoUsuario;
+    private final DaoCredito daoCredito;
 
-    public ManejadorListarCreditos(DaoUsuario daoUsuario) {
-        this.daoUsuario = daoUsuario;
+    public ManejadorListarCreditos(DaoCredito daoCredito) {
+        this.daoCredito = daoCredito;
     }
 
-    public List<DtoUsuario> ejecutar() {
-        return daoUsuario.listar();
+    public List<DtoCredito> ejecutar() {
+        return daoCredito.listar();
     }
 }
