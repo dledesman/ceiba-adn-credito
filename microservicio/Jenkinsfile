@@ -1,3 +1,4 @@
+@Library('ceiba-jenkins-library') _
 pipeline {
   agent {
     label 'Slave_Induccion'
@@ -45,10 +46,10 @@ pipeline {
     stage('Static Code Analysis') {
       steps{
         echo '------------>Análisis de código estático<------------'
-        withSonarQubeEnv('Sonar') {
-            sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+         sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:[${nombre.projectKey}]',
+             sonarName:'${nombre.projectName}',
+             sonarPathProperties:'microservicio/sonar-project.properties')
 
-        }
       }
     }
 
