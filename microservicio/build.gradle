@@ -30,7 +30,7 @@ allprojects {
 	tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 	tasks.withType(Test) { systemProperty "file.encoding", "UTF-8" }
 
-	project.ext.mockitocore = ['org.mockito:mockito-core:3.11.2']
+	project.ext.mockitocore = ['org.mockito:mockito-core:3.1+']
 	project.ext.mockitoinline = ['org.mockito:mockito-inline:3.11.2']
 	project.ext.mockitojupiter = ['org.mockito:mockito-junit-jupiter:3.11.2']
 	project.ext.lombok = ["org.projectlombok:lombok:1.18.20"]
