@@ -29,6 +29,7 @@ dependencies {
 	testImplementation project.ext.mockitocore
 	testImplementation project.ext.mockitoinline
 	testImplementation project.ext.mockitojupiter
+	implementation project.ext.springbootweb
 	testImplementation project(':comun:comun-test')
 
 	implementation project(':comun:comun-dominio')
