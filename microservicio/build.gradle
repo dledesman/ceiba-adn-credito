@@ -97,8 +97,3 @@ dependencies {
 	implementation project(':infraestructura')
 }
 
-bootJar {
-	mainClassName = 'com.ceiba.Application'
-    baseName = 'credito'
-    version =  version
-}

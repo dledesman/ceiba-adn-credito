@@ -53,6 +53,14 @@ jacocoTestReport {
 	}
 }
 
+pitest {
+	testPlugin = 'junit5'
+	junit5PluginVersion = '0.14'
+	testSourceSets = [sourceSets.test]
+	mainSourceSets = [sourceSets.main]
+	useClasspathFile = true
+}
+
 test {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport
