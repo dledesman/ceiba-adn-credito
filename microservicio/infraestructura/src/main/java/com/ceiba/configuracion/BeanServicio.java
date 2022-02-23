@@ -1,5 +1,7 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
+import com.ceiba.credito.servicio.ServicioActualizarCredito;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
@@ -9,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanServicio {
+
+
+    RepositorioCredito repositorioCredito;
 
     @Bean
     public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
@@ -24,6 +29,10 @@ public class BeanServicio {
     public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioActualizarUsuario(repositorioUsuario);
     }
-	
+
+    @Bean
+    public ServicioActualizarCredito servicioActualizarCredito(RepositorioCredito repositorioCredito) {
+        return  new ServicioActualizarCredito(repositorioCredito);
+    }
 
 }

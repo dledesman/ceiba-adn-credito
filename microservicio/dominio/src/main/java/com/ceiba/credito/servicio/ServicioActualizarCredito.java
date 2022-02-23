@@ -1,8 +1,9 @@
 package com.ceiba.credito.servicio;
 
+import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.credito.modelo.entidad.Credito;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
-import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
+
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 public class ServicioActualizarCredito {
@@ -10,7 +11,7 @@ public class ServicioActualizarCredito {
     private static final String SOLICITUD_NO_REGISTRADA = "La solicitud de crédito no se encuentra registrada";
     private static final String OBJETO_CREDITO_NO_CREADO = "Los atributos del crédito no han sido enviados";
 
-    RepositorioCredito repositorioCredito;
+    private final RepositorioCredito repositorioCredito;
 
     public ServicioActualizarCredito(RepositorioCredito repositorioCredito) {
         this.repositorioCredito = repositorioCredito;

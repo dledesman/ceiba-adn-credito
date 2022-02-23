@@ -3,14 +3,16 @@ package com.ceiba.credito.servicio;
 import com.ceiba.credito.modelo.entidad.Credito;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import org.springframework.stereotype.Component;
 
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+@Component
 public class ServicioCrearCredito {
 
     private static final String SOCIO_YA_TIEN_SOLICITUD_DE_CREDITO = "El socio ya registra en solicitu de crédito en trámite";
     private static final String OBJETO_CREDITO_NO_CREADO = "Los atributos del crédito no han sido enviados";
 
-    RepositorioCredito repositorioCredito;
+    private final RepositorioCredito repositorioCredito;
 
     public ServicioCrearCredito(RepositorioCredito repositorioCredito) {
         this.repositorioCredito = repositorioCredito;

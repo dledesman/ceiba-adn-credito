@@ -12,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DtoCredito {
+    private long id;
     private String numeroIdentificacion;
     private String tipoIdentificacion;
     private String monedaTransaccion;

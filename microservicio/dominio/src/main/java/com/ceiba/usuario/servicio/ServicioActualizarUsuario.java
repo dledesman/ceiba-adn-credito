@@ -3,13 +3,14 @@ package com.ceiba.usuario.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ServicioActualizarUsuario {
 
     private static final String EL_USUARIO_NO_EXISTE_EN_EL_SISTEMA = "El no usuario existe en el sistema";
 
     private final RepositorioUsuario repositorioUsuario;
-
+    @Autowired
     public ServicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
         this.repositorioUsuario = repositorioUsuario;
     }

@@ -11,6 +11,10 @@ server:
          timeout: 21600s
 
 spring:
+   h2:
+      console:
+         enable: true
+      path: /h
    datasource:
       driver-class-name: org.h2.Driver
       type: com.zaxxer.hikari.HikariDataSource
@@ -19,3 +23,6 @@ spring:
       password: 
       hikari:
          poolName: pool
+   jpa:
+      hibernate:
+         ddl-auto_ update

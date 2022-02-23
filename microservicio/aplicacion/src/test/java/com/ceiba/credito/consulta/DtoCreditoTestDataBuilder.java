@@ -6,7 +6,7 @@ import com.ceiba.credito.modelo.dto.DtoCredito;
 import java.util.Date;
 
 public class DtoCreditoTestDataBuilder {
-
+    private Long id;
     private String numeroIdentificacion;
     private String tipoIdentificacion;
     private String monedaTransaccion;
@@ -18,6 +18,7 @@ public class DtoCreditoTestDataBuilder {
     private Date fechaPrimeraCuota;
 
     public DtoCreditoTestDataBuilder() {
+        this.id = 10L;
         this.numeroIdentificacion = "02012";
         this.tipoIdentificacion = "C";
         this.monedaTransaccion = "USD";
@@ -31,6 +32,11 @@ public class DtoCreditoTestDataBuilder {
 
     public static DtoCreditoTestDataBuilder aDtoCredito() {
         return new DtoCreditoTestDataBuilder();
+    }
+
+    public DtoCreditoTestDataBuilder conId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public DtoCreditoTestDataBuilder conNumeroIdentificacion(String numeroIdentificacion) {
@@ -80,7 +86,7 @@ public class DtoCreditoTestDataBuilder {
     }
 
     public DtoCredito build() {
-        return new DtoCredito(this.numeroIdentificacion,this.tipoIdentificacion,
+        return new DtoCredito(this.id,this.numeroIdentificacion,this.tipoIdentificacion,
                 this.monedaTransaccion,this.ingresoMensual,this.egresoMensual,
                 this.plazo,this.valorPrestamo,this.valorDividendo,this.fechaPrimeraCuota);
 
