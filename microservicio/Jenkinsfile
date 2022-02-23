@@ -47,7 +47,7 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
          sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:credito-duval.ledesma',
-             sonarName:'${sonar.projectName}',
+             sonarName:'''"CeibaADN-Credito(duval.ledesma)"''',
              sonarPathProperties:'microservicio/sonar-project.properties')
 
       }
