@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'Slave_Induccio'
+    label 'Slave_Induccion'
   }
 
   //Opciones específicas de Pipeline dentro del Pipeline
