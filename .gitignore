@@ -1,0 +1,16 @@
+*.com
+*.class
+*.dll
+*.exe
+.idea/
+microservicio/.idea/
+.gradle
+build/
+*.jar
+*.war
+*.ear
+microservicio/aplicacion/build/**/
+microservicio/dominio/build/**
+microservicio/infraestructura/build/**
+/test/reports
+*.html
