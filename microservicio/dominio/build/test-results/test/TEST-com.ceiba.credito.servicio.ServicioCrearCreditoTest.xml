@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ceiba.credito.servicio.ServicioCrearCreditoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-02-22T21:13:18" hostname="DESKTOP-2GI24IG" time="0.109">
-  <properties/>
-  <testcase name="Deberia crear el crédito correctamente" classname="com.ceiba.credito.servicio.ServicioCrearCreditoTest" time="0.02"/>
-  <testcase name="Deberia lanzar excepción por solicitud ya ingresada" classname="com.ceiba.credito.servicio.ServicioCrearCreditoTest" time="0.012"/>
-  <testcase name="Deberia lanzar excepción por objeto crédito no creado" classname="com.ceiba.credito.servicio.ServicioCrearCreditoTest" time="0.07"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -1,4 +1,0 @@
-com/ceiba/ApplicationMock.java
- com.ceiba.ApplicationMock
-com/ceiba/usuario/servicio/testdatabuilder/ComandoUsuarioTestDataBuilder.java
- com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder

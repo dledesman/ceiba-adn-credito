@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ceiba.credito.servicio.ServicioEliminarCreditoTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-02-22T21:13:18" hostname="DESKTOP-2GI24IG" time="0.174">
-  <properties/>
-  <testcase name="Debería lanzar excpeción por solicitud de crédito no existente" classname="com.ceiba.credito.servicio.ServicioEliminarCreditoTest" time="0.143"/>
-  <testcase name="Debería eliminar la solicitud de crédito correctamente" classname="com.ceiba.credito.servicio.ServicioEliminarCreditoTest" time="0.006"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
