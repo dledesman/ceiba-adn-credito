@@ -23,7 +23,7 @@ public class ControladorHealthCheck {
 	@GetMapping
 	public ResponseEntity<Object>  healthCheck() {
 		if (this.manejadorHealthCheckBloques.existenErrores()) {
-			List<ErrorHealthCheck> listaErrorHealthCheck = this.manejadorHealthCheckBloques.getListadoErroresBloques();//a�adir
+			List<ErrorHealthCheck> listaErrorHealthCheck = this.manejadorHealthCheckBloques.getListadoErroresBloques();
 			return new ResponseEntity<Object>(listaErrorHealthCheck, HttpStatus.SERVICE_UNAVAILABLE);
 		} else {
 			return new ResponseEntity<Object>(true,HttpStatus.OK );
