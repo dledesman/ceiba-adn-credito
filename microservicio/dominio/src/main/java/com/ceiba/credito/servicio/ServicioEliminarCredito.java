@@ -2,9 +2,7 @@ package com.ceiba.credito.servicio;
 
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ServicioEliminarCredito {
 
     private static final String SOLICITUD_NO_REGISTRADA = "La solicitud de crédito no se encuentra registrada";

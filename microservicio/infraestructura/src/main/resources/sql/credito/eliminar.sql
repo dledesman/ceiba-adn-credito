@@ -1,3 +1,3 @@
 delete 
-from usuario
+from credito
 where id = :id

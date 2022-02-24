@@ -3,13 +3,11 @@ package com.ceiba.credito.adaptador.dao;
 import com.ceiba.credito.modelo.dto.DtoCredito;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-@Component
 public class MapeoCredito implements RowMapper<DtoCredito>, MapperResult  {
 
     @Override

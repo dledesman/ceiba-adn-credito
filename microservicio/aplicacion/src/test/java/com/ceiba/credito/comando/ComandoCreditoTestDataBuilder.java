@@ -3,6 +3,7 @@ package com.ceiba.credito.comando;
 import java.util.Date;
 
 public class ComandoCreditoTestDataBuilder {
+    private Long id;
     private String numeroIdentificacion;
     private String tipoIdentificacion;
     private String monedaTransaccion;
@@ -14,6 +15,7 @@ public class ComandoCreditoTestDataBuilder {
     private Date fechaPrimeraCuota;
 
     public ComandoCreditoTestDataBuilder() {
+        this.id = 10L;
         this.numeroIdentificacion = "02012";
         this.tipoIdentificacion = "C";
         this.monedaTransaccion = "USD";
@@ -27,6 +29,11 @@ public class ComandoCreditoTestDataBuilder {
 
     public static ComandoCreditoTestDataBuilder aComandoCredito() {
         return new ComandoCreditoTestDataBuilder();
+    }
+
+    public ComandoCreditoTestDataBuilder conId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public ComandoCreditoTestDataBuilder conNumeroIdentificacion(String numeroIdentificacion) {
@@ -76,7 +83,7 @@ public class ComandoCreditoTestDataBuilder {
     }
 
     public ComandoCredito build() {
-        return new ComandoCredito(this.numeroIdentificacion,this.tipoIdentificacion,
+        return new ComandoCredito(this.id,this.numeroIdentificacion,this.tipoIdentificacion,
                 this.monedaTransaccion,this.ingresoMensual,this.egresoMensual,
                 this.plazo,this.valorPrestamo,this.valorDividendo,this.fechaPrimeraCuota);
 

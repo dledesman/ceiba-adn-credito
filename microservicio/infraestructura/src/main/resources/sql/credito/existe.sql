@@ -1,1 +1,3 @@
-select count(1) from usuario where nombre = :nombre
+select count(1) from credito
+where identificacion.tipoIdentificacion = :tipoIdentificacion and
+identificacion.numeroIdentificacion = :numeroIdentificacion;
