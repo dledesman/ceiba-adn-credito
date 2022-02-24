@@ -1,6 +1,5 @@
 package com.ceiba.credito.consulta;
 
-import com.ceiba.credito.comando.ComandoCredito;
 import com.ceiba.credito.modelo.dto.DtoCredito;
 
 import java.util.Date;
