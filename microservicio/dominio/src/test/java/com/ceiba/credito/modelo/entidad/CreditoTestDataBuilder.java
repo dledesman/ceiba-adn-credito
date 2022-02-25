@@ -83,13 +83,20 @@ public class CreditoTestDataBuilder {
         return this;
     }
 
+    public CreditoTestDataBuilder conFechaSolicitud(LocalDate fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
+        return this;
+    }
+
     public CreditoTestDataBuilder conEstado(String estado) {
         this.estado = estado;
         return this;
     }
 
     public Credito build() {
-        return new Credito(tipoIdentificacion, numeroIdentificacion, ingresoMensual, egresoMensual, codigoMoneda , plazo, tasaCambio);
+        Credito credito = new Credito(tipoIdentificacion, numeroIdentificacion, ingresoMensual, egresoMensual, codigoMoneda , plazo, tasaCambio);
+        credito.setFechaSolicitud(fechaSolicitud);
+        return  credito;
     }
 
 }

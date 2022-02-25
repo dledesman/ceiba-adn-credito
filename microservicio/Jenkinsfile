@@ -57,6 +57,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
+        sh 'microservicio/gradlew --b microservicio/build.gradle build -x test'
       }
     }
   }
@@ -67,7 +68,7 @@ pipeline {
     }
     success {
       echo 'This will run only if successful'
-      junit 'build/test-results/test/*.xml' //RUTA RELATIVA DE LOS ARCHIVOS .XML
+      junit 'microservicio/infrastructura/build/test-results/test/*.xml'
     }
     failure {
       echo 'This will run only if failed'
