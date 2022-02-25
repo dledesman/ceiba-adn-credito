@@ -7,7 +7,6 @@ import com.ceiba.credito.comando.manejador.ManejadorCrearCredito;
 import com.ceiba.credito.comando.manejador.ManejadorEliminarCredito;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,7 @@ public class ComandoControladorCredito {
 
     @PutMapping(value = "/{id}")
     @ApiOperation("Actualizar credito")
-    public void actualizar(@RequestBody @NotNull ComandoCredito comandoCredito, @PathVariable Long id) {
+    public void actualizar(@RequestBody ComandoCredito comandoCredito, @PathVariable Long id) {
         comandoCredito.setId(id);
         manejadorActualizarCredito.ejecutar(comandoCredito);
     }

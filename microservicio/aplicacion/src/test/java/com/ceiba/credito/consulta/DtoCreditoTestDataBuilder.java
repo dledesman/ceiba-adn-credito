@@ -2,31 +2,38 @@ package com.ceiba.credito.consulta;
 
 import com.ceiba.credito.modelo.dto.DtoCredito;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DtoCreditoTestDataBuilder {
     private Long id;
     private String numeroIdentificacion;
     private String tipoIdentificacion;
-    private String monedaTransaccion;
+    private LocalDate fechaSolicitud;
     private Double ingresoMensual;
     private Double egresoMensual;
+    private String codigoMoneda;
     private Integer plazo;
     private Double valorPrestamo;
     private Double valorDividendo;
-    private Date fechaPrimeraCuota;
+    private Double tasaCambio;
+    private LocalDate fechaPrimeraCuota;
+    private String estado;
 
     public DtoCreditoTestDataBuilder() {
         this.id = 10L;
         this.numeroIdentificacion = "02012";
         this.tipoIdentificacion = "C";
-        this.monedaTransaccion = "USD";
+        this.fechaSolicitud = LocalDate.now();
         this.ingresoMensual = 1500.00;
         this.egresoMensual = 950.00;
+        this.codigoMoneda = "USD";
         this.plazo = 6;
         this.valorPrestamo=0.00;
         this.valorDividendo=0.00;
-        this.fechaPrimeraCuota = new Date();
+        this.tasaCambio=3491.12;
+        this.fechaPrimeraCuota = LocalDate.now();
+        this.estado = "Ingresado";
     }
 
     public static DtoCreditoTestDataBuilder aDtoCredito() {
@@ -48,8 +55,8 @@ public class DtoCreditoTestDataBuilder {
         return this;
     }
 
-    public DtoCreditoTestDataBuilder conMonedaTransaccion(String monedaTransaccion) {
-        this.monedaTransaccion = monedaTransaccion;
+    public DtoCreditoTestDataBuilder conCodigoMoneda(String codigoMoneda) {
+        this.codigoMoneda = codigoMoneda;
         return this;
     }
 
@@ -79,15 +86,20 @@ public class DtoCreditoTestDataBuilder {
         return this;
     }
 
-    public DtoCreditoTestDataBuilder conFechaPrimeraCuota(Date fechaPrimeraCuota) {
+    public DtoCreditoTestDataBuilder conFechaPrimeraCuota(LocalDate fechaPrimeraCuota) {
         this.fechaPrimeraCuota = fechaPrimeraCuota;
+        return this;
+    }
+
+    public DtoCreditoTestDataBuilder conTasaCambio(Double tasaCambio) {
+        this.tasaCambio = tasaCambio;
         return this;
     }
 
     public DtoCredito build() {
         return new DtoCredito(this.id,this.numeroIdentificacion,this.tipoIdentificacion,
-                this.monedaTransaccion,this.ingresoMensual,this.egresoMensual,
-                this.plazo,this.valorPrestamo,this.valorDividendo,this.fechaPrimeraCuota);
+                this.fechaSolicitud,this.ingresoMensual,this.egresoMensual,this.codigoMoneda,
+                this.plazo,this.valorPrestamo,this.valorDividendo,this.tasaCambio,this.fechaPrimeraCuota,this.estado);
 
     }
 

@@ -25,14 +25,14 @@ class ServicioActualizarCreditoTest {
     @DisplayName("Debería actualizar una solicitud de crédito correctamente")
     void deberiaActualizarSolicitudCorrectamente() {
         Credito credito = aCredito().build();
-        Mockito.when(repositorioCredito.existePorId(credito.getCodigo())).thenReturn(true);
+        Mockito.when(repositorioCredito.existePorId(credito.getId())).thenReturn(true);
         servicioActualizarCredito.ejecutar(credito);
         Mockito.verify(repositorioCredito,Mockito.times(1)).actualizar(credito);
     }
 
     @Test
     @DisplayName("Deberia lanzar excepción por objeto crédito no creado")
-    public void deberiaLanzarExcepcionPorObjetoCreditoNoCreado() {
+    void deberiaLanzarExcepcionPorObjetoCreditoNoCreado() {
         Credito credito = null;
         Mockito.when(repositorioCredito.existePorId(Mockito.anyLong())).thenReturn(true);
         try {
@@ -45,7 +45,7 @@ class ServicioActualizarCreditoTest {
 
     @Test
     @DisplayName("Deberia lanzar excepción por solicitud de crédito no existente")
-    public void deberiaLanzarExcepcionPorSolicitudDeCreditoNoExistente() {
+    void deberiaLanzarExcepcionPorSolicitudDeCreditoNoExistente() {
         Credito credito =  aCredito().build();
         Mockito.when(repositorioCredito.existePorId(Mockito.anyLong())).thenReturn(false);
         try {

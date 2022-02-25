@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,13 +13,16 @@ import java.util.Date;
 @NoArgsConstructor
 public class DtoCredito {
     private long id;
-    private String numeroIdentificacion;
     private String tipoIdentificacion;
-    private String monedaTransaccion;
+    private String numeroIdentificacion;
+    private LocalDate fechaSolicitud;
     private Double ingresoMensual;
     private Double egresoMensual;
+    private String codigoMoneda;
     private Integer plazo;
+    private Double tasaCambio;
     private Double valorPrestamo;
     private Double valorDividendo;
-    private Date fechaPrimeraCuota;
+    private LocalDate fechaPrimeraCuota;
+    private String estado;
 }

@@ -1,132 +1,107 @@
 package com.ceiba.credito.modelo.entidad;
 
-import com.ceiba.dinero.modelo.entidad.Dinero;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-import com.ceiba.identificacion.modelo.entidad.Identificacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static com.ceiba.identificacion.modelo.entidad.IdentificacionTestDataBuilder.anIdentificacion;
-import static com.ceiba.dinero.modelo.entidad.DineroTestDataBuilder.aDinero;
 import static com.ceiba.credito.modelo.entidad.CreditoTestDataBuilder.aCredito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreditoTest {
 
-    Identificacion identificacion;
-    Dinero ingresoNormal;
-    Dinero egresoNormal;
-    Dinero ingresoNegativo;
-    Dinero egresoSuperior;
+    String tipoIdentificacion;
+    String numeroIdentificacion;
+    Double ingresoNormal;
+    Double egresoNormal;
+    Double ingresoNegativo;
+    Double egresoSuperior;
 
     @BeforeEach
     public void inicializar() {
-        ingresoNormal = aDinero()
-                .conCodigo("USD")
-                .conValor(1500.00)
-                .conTasaCambio(3981.24).build();
-        ingresoNegativo = aDinero()
-                .conCodigo("USD")
-                .conValor(-1500.00)
-                .conTasaCambio(3981.24).build();
-        egresoNormal = aDinero()
-                .conCodigo("USD")
-                .conValor(950.00)
-                .conTasaCambio(3981.24).build();
-        egresoSuperior = aDinero()
-                .conCodigo("USD")
-                .conValor(2500.00)
-                .conTasaCambio(3981.245).build();
-        identificacion = anIdentificacion()
-                .conTipoIdentificacion("C")
-                .conNumeroIdentificacion("02012").build();
+        ingresoNormal = 1500.00;
+        ingresoNegativo = -1500.00;
+        egresoNormal = 950.00;
+        egresoSuperior = 2500.00;
+        tipoIdentificacion ="C";
+        numeroIdentificacion = "02012";
     }
 
     @Test
     @DisplayName("Deberia crear credito correctamente")
-    public void deberiaCrearCreditoCorrectamente() {
+    void deberiaCrearCreditoCorrectamente() {
         Credito credito = aCredito()
-                .conIdentificacion(identificacion)
+                .conTipoIdentificacion(tipoIdentificacion)
+                .conNumeroIdentificacion(numeroIdentificacion)
                 .conIngresoMensual(ingresoNormal)
                 .conEgresoMensual(egresoNormal)
-                .conPlazo(6).build();
-        assertEquals("02012", credito.getIdentificacion().getNumeroIdentificacion());
-        assertEquals(1500.00, credito.getIngresoMensual().getValor());
-        assertEquals(950.00, credito.getEgresoMensual().getValor());
+                .conPlazo(6)
+                .conTasaCambio(3491.12).build();
+        assertEquals("C", credito.getTipoIdentificacion());
+        assertEquals("02012", credito.getNumeroIdentificacion());
+        assertEquals(1500.00, credito.getIngresoMensual());
+        assertEquals(950.00, credito.getEgresoMensual());
         assertEquals(6, credito.getPlazo());
+        assertEquals(3491.12, credito.getTasaCambio());
     }
 
+
     @Test
-    @DisplayName("Debería lanzar excepción por identificación nula")
-    public void deberiaLanzarExcepcionPorIdentificacionNula() {
+    @DisplayName("Debería lanzar excepción por tipo identificación nula")
+    void deberiaLanzarExcepcionPorTipoIdentificacionNula() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(null)
-                    .conIngresoMensual(ingresoNormal)
-                    .conEgresoMensual(egresoNormal)
-                    .conPlazo(6).build();
-            fail("Debería lanzar excepción por identificación nula");
+                    .conTipoIdentificacion(null).build();
+            fail("Debería lanzar excepción por tipo identificación nula");
         } catch (ExcepcionValorObligatorio ex) {
-            assertEquals("El campo de identificación es obligatorio",ex.getMessage());
+            assertEquals("El campo de tipo de identificación es obligatorio",ex.getMessage());
         }
     }
 
     @Test
-    @DisplayName("Debería lanzar excepción por valor de egresos nulo")
-    public void deberiaLanzarExcepcionPorValorDeEgresoNulo() {
+    @DisplayName("Debería lanzar excepción por número identificación nula")
+    void deberiaLanzarExcepcionPorNumeroIdentificacionNula() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(identificacion)
-                    .conIngresoMensual(ingresoNormal)
-                    .conEgresoMensual(null)
-                    .conPlazo(6).build();
-            fail("Debería lanzar excepción por valor de egresos nulo");
+                    .conNumeroIdentificacion(null).build();
+            fail("Debería lanzar excepción por número identificación nula");
         } catch (ExcepcionValorObligatorio ex) {
-            assertEquals("El campo de valor de egresos mensuales es obligatorio",ex.getMessage());
+            assertEquals("El campo de número de identificación es obligatorio",ex.getMessage());
         }
     }
 
     @Test
-    @DisplayName("Debería lanzar excepción por valor de ingresos nulo")
-    public void deberiaLanzarExcepcionPorValorDeIngresoNulo() {
+    @DisplayName("Debería lanzar excepción por valor de ingresos negativo")
+    void deberiaLanzarExcepcionPorValorDeIngresoNulo() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(identificacion)
-                    .conIngresoMensual(null)
-                    .conEgresoMensual(egresoNormal)
-                    .conPlazo(6).build();
+                    .conIngresoMensual(-1.00).build();
             fail("Debería lanzar excepción por valor de ingresos nulo");
-        } catch (ExcepcionValorObligatorio ex) {
+        } catch (ExcepcionValorInvalido ex) {
             assertEquals("El campo de valor de ingresos mensuales es obligatorio",ex.getMessage());
         }
     }
 
     @Test
-    @DisplayName("Debería lanzar excepción por plazo ingreso negativo")
-    public void deberiaLanzarExcepcionPorIngresoNegativo() {
+    @DisplayName("Debería lanzar excepción por valor de egresos negativo")
+    void deberiaLanzarExcepcionPorValorDeEgresoNulo() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(identificacion)
-                    .conIngresoMensual(ingresoNegativo)
-                    .conEgresoMensual(egresoNormal)
-                    .conPlazo(6).build();
-            fail("Debería lanzar excepción por plazo ingreso negativo");
+                    .conEgresoMensual(-1.00).build();
+            fail("Debería lanzar excepción por valor de egresos nulo");
         } catch (ExcepcionValorInvalido ex) {
-            assertEquals("El valor de ingresos  mensuales debe ser mayor a cero",ex.getMessage());
+            assertEquals("El campo de valor de egresos mensuales es obligatorio",ex.getMessage());
         }
     }
 
     @Test
     @DisplayName("Debería lanzar excepción por egreso mayor que ingreso")
-    public void deberiaLanzarExcepcionPorEgresoMayorQueIngreso() {
+    void deberiaLanzarExcepcionPorEgresoMayorQueIngreso() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(identificacion)
                     .conIngresoMensual(ingresoNormal)
-                    .conEgresoMensual(egresoSuperior)
-                    .conPlazo(6).build();
+                    .conEgresoMensual(egresoSuperior).build();
             fail("Debería lanzar excepción por egreso mayor que ingreso");
         } catch (ExcepcionValorInvalido ex) {
             assertEquals("El valor de egeresos  mensuales debe ser menor que los ingresos",ex.getMessage());
@@ -135,12 +110,9 @@ class CreditoTest {
 
     @Test
     @DisplayName("Debería lanzar excepción por plazo nulo")
-    public void deberiaLanzarExcepcionPorPlazoNulo() {
+    void deberiaLanzarExcepcionPorPlazoNulo() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(identificacion)
-                    .conIngresoMensual(ingresoNormal)
-                    .conEgresoMensual(egresoNormal)
                     .conPlazo(null).build();
             fail("Debería lanzar excepción por plazo nulo");
         } catch (ExcepcionValorObligatorio ex) {
@@ -150,16 +122,25 @@ class CreditoTest {
 
     @Test
     @DisplayName("Debería lanzar excepción por plazo invalido")
-    public void deberiaLanzarExcepcionPorPlazoInvalido() {
+    void deberiaLanzarExcepcionPorPlazoInvalido() {
         try {
             Credito credito = aCredito()
-                    .conIdentificacion(identificacion)
-                    .conIngresoMensual(ingresoNormal)
-                    .conEgresoMensual(egresoNormal)
                     .conPlazo(5).build();
             fail("Debería lanzar excepción por plazo invalido");
         } catch (ExcepcionValorInvalido ex) {
             assertEquals("El valor permitido para el plazo es 3, 6 o 12 meses",ex.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Debería lanzar excepción por tasa de cambio nula")
+    void deberiaLanzarExcepcionPorTasaCambioNula() {
+        try {
+            Credito credito = aCredito()
+                    .conTasaCambio(-1.00).build();
+            fail("Debería lanzar excepción por tasa de cambio nula");
+        } catch (ExcepcionValorInvalido ex) {
+            assertEquals("El campo de tasa de cambio es obligatorio",ex.getMessage());
         }
     }
 

@@ -22,16 +22,16 @@ class ServicioCrearCreditoTest {
 
     @Test
     @DisplayName("Deberia crear el crédito correctamente")
-    public void deberiaCrearCreditoCorrectamente() {
+    void deberiaCrearCreditoCorrectamente() {
         Credito credito = aCredito().build();
-        Mockito.when(repositorioCredito.existe(credito.getIdentificacion())).thenReturn(false);
+        Mockito.when(repositorioCredito.existe(credito.getNumeroIdentificacion())).thenReturn(false);
         Mockito.when(repositorioCredito.crear(credito)).thenReturn(10L);
         Assertions.assertEquals(10L,servicioCrearCredito.ejecutar(credito));
     }
 
     @Test
     @DisplayName("Deberia lanzar excepción por objeto crédito no creado")
-    public void deberiaLanzarExcepcionPorObjetoCreditoNoCreado() {
+    void deberiaLanzarExcepcionPorObjetoCreditoNoCreado() {
         Credito credito= null;
         Mockito.when(repositorioCredito.crear(credito)).thenReturn(10L);
         try {
@@ -44,9 +44,9 @@ class ServicioCrearCreditoTest {
 
     @Test
     @DisplayName("Deberia lanzar excepción por solicitud ya ingresada")
-    public void deberiaLanzarExcepcionPorSolicitudYaIngresada() {
+    void deberiaLanzarExcepcionPorSolicitudYaIngresada() {
         Credito credito = aCredito().build();
-        Mockito.when(repositorioCredito.existe(credito.getIdentificacion())).thenReturn(true);
+        Mockito.when(repositorioCredito.existe(credito.getNumeroIdentificacion())).thenReturn(true);
         Mockito.when(repositorioCredito.crear(credito)).thenReturn(10L);
         try {
             servicioCrearCredito.ejecutar(credito);

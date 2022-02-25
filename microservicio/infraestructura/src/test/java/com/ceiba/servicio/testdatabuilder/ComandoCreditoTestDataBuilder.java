@@ -1,7 +1,8 @@
-package com.ceiba.credito.comando;
+package com.ceiba.servicio.testdatabuilder;
+
+import com.ceiba.credito.comando.ComandoCredito;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ComandoCreditoTestDataBuilder {
     private Long id;
@@ -23,23 +24,23 @@ public class ComandoCreditoTestDataBuilder {
         this.numeroIdentificacion = "02012";
         this.tipoIdentificacion = "C";
         this.fechaSolicitud = LocalDate.now();
+        this.codigoMoneda = "USD";
         this.ingresoMensual = 1500.00;
         this.egresoMensual = 950.00;
-        this.codigoMoneda = "USD";
         this.plazo = 6;
         this.valorPrestamo=0.00;
         this.valorDividendo=0.00;
         this.tasaCambio = 3941.12;
         this.fechaPrimeraCuota = LocalDate.now();
-        this.estado="Ingresado";
+        this.estado = "Pendiente";
     }
 
     public static ComandoCreditoTestDataBuilder aComandoCredito() {
         return new ComandoCreditoTestDataBuilder();
     }
 
-    public ComandoCreditoTestDataBuilder conId(Long id) {
-        this.id = id;
+    public ComandoCreditoTestDataBuilder conEstado(String estado) {
+        this.estado = estado;
         return this;
     }
 
@@ -94,15 +95,10 @@ public class ComandoCreditoTestDataBuilder {
         return this;
     }
 
-    public ComandoCreditoTestDataBuilder conFechaSolicitud(LocalDate fechaSolicitud) {
-        this.fechaSolicitud = fechaSolicitud;
-        return this;
-    }
-
     public ComandoCredito build() {
         return new ComandoCredito(this.id,this.numeroIdentificacion,this.tipoIdentificacion,
-                this.fechaSolicitud, this.ingresoMensual,this.egresoMensual, this.codigoMoneda,
-                this.plazo,this.valorPrestamo,this.valorDividendo,this.tasaCambio,this.fechaPrimeraCuota, this.estado);
+                this.fechaSolicitud,this.ingresoMensual,this.egresoMensual, this.codigoMoneda,
+                this.plazo,this.valorPrestamo,this.valorDividendo,this.tasaCambio,this.fechaPrimeraCuota,this.estado);
 
     }
 

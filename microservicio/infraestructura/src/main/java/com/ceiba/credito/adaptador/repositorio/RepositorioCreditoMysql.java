@@ -2,7 +2,6 @@ package com.ceiba.credito.adaptador.repositorio;
 
 import com.ceiba.credito.modelo.entidad.Credito;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
-import com.ceiba.identificacion.modelo.entidad.Identificacion;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -50,9 +49,9 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
     }
 
     @Override
-    public boolean existe(Identificacion identificacion) {
+    public boolean existe(String numeroIdentificacion) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("identificacion.numeroIdentificacion", identificacion);
+        paramSource.addValue("numeroIdentificacion", numeroIdentificacion);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
@@ -60,6 +59,6 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
     public boolean existePorId(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,paramSource, Boolean.class);
     }
 }

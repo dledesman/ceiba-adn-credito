@@ -19,7 +19,7 @@ public class ServicioActualizarCredito {
 
     public void ejecutar(Credito credito) {
         validarObligatorio(credito, OBJETO_CREDITO_NO_CREADO);
-        verificarSolicitudexistente(credito.getCodigo());
+        verificarSolicitudexistente(credito.getId());
         this.repositorioCredito.actualizar(credito);
     }
 
