@@ -1,31 +1,35 @@
 package com.ceiba.credito.modelo.entidad;
 
+import com.ceiba.cliente.modelo.entidad.Cliente;
+import com.ceiba.cliente.modelo.entidad.ClienteTestDataBuilder;
+import com.ceiba.credito.modelo.enumeracion.EnumEstado;
+import com.ceiba.credito.modelo.enumeracion.EnumPlazo;
+import com.ceiba.dinero.modelo.entidad.Dinero;
+import com.ceiba.dinero.modelo.entidad.DineroTestDataBuilder;
+
 import java.time.LocalDate;
-import java.util.Date;
+
 
 public class CreditoTestDataBuilder {
     private Long codigo;
-    private String tipoIdentificacion;
-    private String numeroIdentificacion;
+    private Cliente cliente;
     private LocalDate fechaSolicitud;
-    private Double ingresoMensual;
-    private Double egresoMensual;
-    private String codigoMoneda;
-    private Integer plazo;
-    private Double valorPrestamo;
-    private Double valorDividendo;
-    private Double tasaCambio;
+    private Dinero ingresoMensual;
+    private Dinero egresoMensual;
+    private EnumPlazo plazo;
+    private Dinero valorPrestamo;
+    private Dinero valorDividendo;
     private LocalDate fechaPrimeraCuota;
-    private String estado;
+    private EnumEstado estado;
 
     public CreditoTestDataBuilder() {
-        this.tipoIdentificacion = "2";
-        this.numeroIdentificacion = "02012";
-        this.ingresoMensual = 1000.00;
-        this.egresoMensual = 800.00;
-        this.codigoMoneda = "USD";
-        this.plazo = 6;
-        this.tasaCambio = 3941.12;
+        this.cliente = ClienteTestDataBuilder.aCliente().build();
+        this.fechaSolicitud = LocalDate.now();
+        this.ingresoMensual = DineroTestDataBuilder.aDinero()
+                .conValor(1500.00).conTasaCambio(3945.12).build();
+        this.egresoMensual = DineroTestDataBuilder.aDinero()
+                .conValor(1200.00).conTasaCambio(3945.12).build();
+        this.plazo = EnumPlazo.SEIS;
         this.fechaSolicitud = LocalDate.now();
     }
 
@@ -33,53 +37,8 @@ public class CreditoTestDataBuilder {
         return new CreditoTestDataBuilder();
     }
 
-    public CreditoTestDataBuilder conTipoIdentificacion(String tipoIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conNumeroIdentificacion(String numeroIdentificacion) {
-        this.numeroIdentificacion = numeroIdentificacion;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conIngresoMensual(Double ingresoMensual) {
-        this.ingresoMensual = ingresoMensual;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conEgresoMensual(Double egresoMensual) {
-        this.egresoMensual = egresoMensual;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conCodigoMoneda(String codigoMoneda) {
-        this.codigoMoneda = codigoMoneda;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conPlazo(Integer plazo) {
-        this.plazo = plazo;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conValorPrestamo(Double valorPrestamo) {
-        this.valorPrestamo = valorPrestamo;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conValorDividendo(Double valorDividendo) {
-        this.valorDividendo = valorDividendo;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conTasaCambio(Double tasaCambio) {
-        this.tasaCambio = tasaCambio;
-        return this;
-    }
-
-    public CreditoTestDataBuilder conFechaPrimeraCuota(LocalDate fechaPrimeraCuota) {
-        this.fechaPrimeraCuota = fechaPrimeraCuota;
+    public CreditoTestDataBuilder conCliente(Cliente cliente) {
+        this.cliente = cliente;
         return this;
     }
 
@@ -88,14 +47,46 @@ public class CreditoTestDataBuilder {
         return this;
     }
 
-    public CreditoTestDataBuilder conEstado(String estado) {
+    public CreditoTestDataBuilder conIngresoMensual(Dinero ingresoMensual) {
+        this.ingresoMensual = ingresoMensual;
+        return this;
+    }
+
+    public CreditoTestDataBuilder conEgresoMensual(Dinero egresoMensual) {
+        this.egresoMensual = egresoMensual;
+        return this;
+    }
+
+
+    public CreditoTestDataBuilder conPlazo(EnumPlazo plazo) {
+        this.plazo = plazo;
+        return this;
+    }
+
+    public CreditoTestDataBuilder conValorPrestamo(Dinero valorPrestamo) {
+        this.valorPrestamo = valorPrestamo;
+        return this;
+    }
+
+    public CreditoTestDataBuilder conValorDividendo(Dinero valorDividendo) {
+        this.valorDividendo = valorDividendo;
+        return this;
+    }
+
+
+    public CreditoTestDataBuilder conFechaPrimeraCuota(LocalDate fechaPrimeraCuota) {
+        this.fechaPrimeraCuota = fechaPrimeraCuota;
+        return this;
+    }
+
+
+    public CreditoTestDataBuilder conEstado(EnumEstado estado) {
         this.estado = estado;
         return this;
     }
 
     public Credito build() {
-        Credito credito = new Credito(tipoIdentificacion, numeroIdentificacion, ingresoMensual, egresoMensual, codigoMoneda , plazo, tasaCambio);
-        credito.setFechaSolicitud(fechaSolicitud);
+        Credito credito = new Credito(cliente, ingresoMensual, egresoMensual,  plazo, fechaSolicitud);
         return  credito;
     }
 
