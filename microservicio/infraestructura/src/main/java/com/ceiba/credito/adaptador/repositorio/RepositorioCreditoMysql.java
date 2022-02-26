@@ -1,16 +1,25 @@
 package com.ceiba.credito.adaptador.repositorio;
 
+import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.credito.modelo.entidad.Credito;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class RepositorioCreditoMysql implements RepositorioCredito {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+
+    @Autowired
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @SqlStatement(namespace="credito", value="crear")
     private static String sqlCrear;
@@ -33,7 +42,21 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
 
     @Override
     public Long crear(Credito credito) {
-        return this.customNamedParameterJdbcTemplate.crear(credito, sqlCrear);
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("idCliente", credito.getCliente().getId());
+        paramSource.addValue("fechaSolicitud", credito.getCliente().getId());
+        paramSource.addValue("ingresoMensual",credito.getIngresoMensual().getValor());
+        paramSource.addValue("egresoMensual",credito.getEgresoMensual().getValor());
+        paramSource.addValue("codigoMoneda",credito.getIngresoMensual().getCodigo());
+        paramSource.addValue("plazo",credito.getPlazo().getNumero());
+        paramSource.addValue("tasaCambio",credito.getIngresoMensual().getTasaCambio());
+        paramSource.addValue("valorPrestamo",credito.getValorPrestamo().getValor());
+        paramSource.addValue("valorDividendo",credito.getValorDividendo().getValor());
+        paramSource.addValue("fechaPrimeraCuota",credito.getFechaPrimeraCuota());
+        paramSource.addValue("estado",credito.getEstado().getCodigo());
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        this.namedParameterJdbcTemplate.update(sqlCrear, paramSource,keyHolder,new String[] { "id" });
+        return keyHolder.getKey().longValue();
     }
 
     @Override
@@ -49,9 +72,9 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
     }
 
     @Override
-    public boolean existe(String numeroIdentificacion) {
+    public boolean existe(Cliente cliente) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("numeroIdentificacion", numeroIdentificacion);
+        paramSource.addValue("cliente", cliente.getId());
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
