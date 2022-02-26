@@ -24,7 +24,7 @@ public class ServicioCrearCredito {
     }
 
     private void validarSolicitudEnTramite(Credito credito) {
-        if (repositorioCredito.existe(credito.getNumeroIdentificacion())) {
+        if (repositorioCredito.existe(credito.getCliente())) {
             throw new ExcepcionDuplicidad(SOCIO_YA_TIEN_SOLICITUD_DE_CREDITO);
         }
     }

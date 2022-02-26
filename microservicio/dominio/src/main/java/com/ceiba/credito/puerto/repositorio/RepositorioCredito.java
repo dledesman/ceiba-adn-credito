@@ -1,5 +1,6 @@
 package com.ceiba.credito.puerto.repositorio;
 
+import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.credito.modelo.entidad.Credito;
 
 public interface RepositorioCredito {
@@ -10,7 +11,7 @@ public interface RepositorioCredito {
 
     void eliminar(Long id);
 
-    boolean existe(String identificacion);
+    boolean existe(Cliente cliente);
 
     boolean existePorId(Long codigo);
 }

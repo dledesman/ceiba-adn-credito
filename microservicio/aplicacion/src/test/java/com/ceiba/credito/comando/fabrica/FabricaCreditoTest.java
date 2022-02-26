@@ -23,12 +23,12 @@ class FabricaCreditoTest {
     void deberiaCrearObjetoCreditoDesdeObjetoComando() {
         ComandoCredito comandoCredito = aComandoCredito().conNumeroIdentificacion("02012").build();
         Credito credito = fabricaCredito.crear(comandoCredito);
-        Assertions.assertEquals(comandoCredito.getNumeroIdentificacion(),credito.getNumeroIdentificacion());
-        Assertions.assertEquals(comandoCredito.getTipoIdentificacion(),credito.getTipoIdentificacion());
-        Assertions.assertEquals(comandoCredito.getEgresoMensual(),credito.getEgresoMensual());
-        Assertions.assertEquals(comandoCredito.getIngresoMensual(),credito.getIngresoMensual());
-        Assertions.assertEquals(comandoCredito.getPlazo(),credito.getPlazo());
-        Assertions.assertEquals(comandoCredito.getTasaCambio(),credito.getTasaCambio());
+        Assertions.assertEquals(comandoCredito.getNumeroIdentificacion(),credito.getCliente().getNumeroIdentificacion());
+        Assertions.assertEquals(comandoCredito.getTipoIdentificacion(),credito.getCliente().getTipoIdentificacion().getCodigo());
+        Assertions.assertEquals(comandoCredito.getEgresoMensual(),credito.getEgresoMensual().getValor());
+        Assertions.assertEquals(comandoCredito.getIngresoMensual(),credito.getIngresoMensual().getValor());
+        Assertions.assertEquals(comandoCredito.getPlazo(),credito.getPlazo().getNumero());
+        Assertions.assertEquals(comandoCredito.getTasaCambio(),credito.getIngresoMensual().getTasaCambio());
     }
 
 }
