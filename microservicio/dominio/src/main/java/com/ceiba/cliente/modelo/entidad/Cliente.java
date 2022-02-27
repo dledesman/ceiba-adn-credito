@@ -15,6 +15,7 @@ public class Cliente {
     private EnumTipoIdentificacion tipoIdentificacion;
     private String numeroIdentificacion;
 
+    public Cliente() {}
     public Cliente(Long id, EnumTipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
         validarObligatorio(tipoIdentificacion,TIPO_DE_IDENTIFICACION_OBLIGATORIO);
         validarObligatorio(numeroIdentificacion,NUMERO_DE_IDENTIFICACION_OBLIGATORIO);

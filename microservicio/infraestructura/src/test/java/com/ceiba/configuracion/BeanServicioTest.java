@@ -1,10 +1,10 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.credito.servicio.ServicioActualizarCredito;
 import com.ceiba.credito.servicio.ServicioCrearCredito;
 import com.ceiba.credito.servicio.ServicioEliminarCredito;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
@@ -15,12 +15,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.time.LocalDateTime;
-
 class BeanServicioTest {
 
     private BeanServicio beanServicio;
     private RepositorioCredito repositorioCredito;
+    private RepositorioCliente repositorioCliente;
     private RepositorioUsuario repositorioUsuario;
 
     @BeforeEach
@@ -54,7 +53,7 @@ class BeanServicioTest {
     @Test
     @DisplayName("Debería devolver un servicio para crear creditos")
     void deberiaDevolverUnServicioParaCrearCreditos() {
-        ServicioCrearCredito respuesta = beanServicio.servicioCrearCredito(repositorioCredito);
+        ServicioCrearCredito respuesta = beanServicio.servicioCrearCredito(repositorioCredito, repositorioCliente);
         Assertions.assertNotNull(respuesta);
     }
 

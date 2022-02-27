@@ -96,9 +96,9 @@ public class ComandoCreditoTestDataBuilder {
     }
 
     public ComandoCredito build() {
-        return new ComandoCredito(this.id,this.numeroIdentificacion,this.tipoIdentificacion,
-                this.fechaSolicitud,this.ingresoMensual,this.egresoMensual, this.codigoMoneda,
-                this.plazo,this.valorPrestamo,this.valorDividendo,this.tasaCambio,this.fechaPrimeraCuota,this.estado);
+        return new ComandoCredito(this.id,this.tipoIdentificacion,this.numeroIdentificacion,
+                this.ingresoMensual,this.egresoMensual, this.codigoMoneda,
+                this.plazo,this.tasaCambio);
 
     }
 

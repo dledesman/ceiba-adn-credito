@@ -1,10 +1,10 @@
 package com.ceiba.cliente.comando.manejador;
 
 import com.ceiba.cliente.comando.ComandoCliente;
-import com.ceiba.cliente.comando.fabrica.FabricaCliente;
 import com.ceiba.cliente.modelo.entidad.Cliente;
+import com.ceiba.cliente.modelo.entidad.DtoCliente;
 import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
-import com.ceiba.cliente.servicio.ServicioCrearCliente;
+import com.ceiba.cliente.servicio.ServicioConsultarCliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,15 +15,13 @@ import static com.ceiba.cliente.comando.manejador.ComandoClienteTestDataBuilder.
 
 class ManejadorCrearClienteTest {
 
-    private FabricaCliente fabricaCliente;
-    private ServicioCrearCliente servicioCrearCliente;
-    private ManejadorCrearCliente manejadorCrearCliente;
+    private ServicioConsultarCliente servicioConsultarCliente;
+    private ManejadorConsultaCliente manejadorCrearCliente;
 
     @BeforeEach
     void inicializar() {
-        fabricaCliente = Mockito.mock(FabricaCliente.class);
-        servicioCrearCliente = Mockito.mock(ServicioCrearCliente.class);
-        manejadorCrearCliente = new ManejadorCrearCliente(fabricaCliente, servicioCrearCliente);
+        servicioConsultarCliente = Mockito.mock(ServicioConsultarCliente.class);
+        manejadorCrearCliente = new ManejadorConsultaCliente(servicioConsultarCliente);
     }
 
     @Test
@@ -31,10 +29,10 @@ class ManejadorCrearClienteTest {
     void deberiaCrearClienteCorrectamente() {
         Long valorEsperado =15L;
         ComandoCliente comandoCliente = aComandoCliente().build();
-        Cliente cliente = new Cliente(null, EnumTipoIdentificacion.CEDULA,"02012");
-        Mockito.when(fabricaCliente.crear(comandoCliente)).thenReturn(cliente);
-        Mockito.when(servicioCrearCliente.ejecutar(cliente)).thenReturn(valorEsperado);
+        DtoCliente dtoCliente = new DtoCliente(15L, "C","02012");
+        Mockito.when(servicioConsultarCliente.ejecutar(Mockito.anyString(), Mockito.anyString())).thenReturn(dtoCliente);
         manejadorCrearCliente.ejecutar(comandoCliente);
-        Mockito.verify(servicioCrearCliente,Mockito.times(1)).ejecutar(cliente);
+        Mockito.verify(servicioConsultarCliente,Mockito.times(1))
+                .ejecutar(comandoCliente.getTipoIdentificacion(), comandoCliente.getNumeroIdentificacion());
     }
 }

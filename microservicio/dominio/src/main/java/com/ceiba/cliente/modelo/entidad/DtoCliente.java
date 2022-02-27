@@ -1,6 +1,5 @@
-package com.ceiba.cliente.modelo.dto;
+package com.ceiba.cliente.modelo.entidad;
 
-import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DtoCliente {
     private Long id;
-    private EnumTipoIdentificacion tipoIdentificacion;
+    private String tipoIdentificacion;
     private String numeroIdentificacion;
 }

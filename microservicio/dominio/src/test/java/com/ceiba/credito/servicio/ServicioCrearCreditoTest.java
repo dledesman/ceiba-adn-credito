@@ -1,5 +1,6 @@
 package com.ceiba.credito.servicio;
 
+import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.credito.modelo.entidad.Credito;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;

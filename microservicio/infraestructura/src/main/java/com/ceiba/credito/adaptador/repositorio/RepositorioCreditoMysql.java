@@ -6,7 +6,6 @@ import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -47,7 +46,7 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
         paramSource.addValue("fechaSolicitud", credito.getCliente().getId());
         paramSource.addValue("ingresoMensual",credito.getIngresoMensual().getValor());
         paramSource.addValue("egresoMensual",credito.getEgresoMensual().getValor());
-        paramSource.addValue("codigoMoneda",credito.getIngresoMensual().getCodigo());
+        paramSource.addValue("codigoMoneda",credito.getIngresoMensual().getMoneda());
         paramSource.addValue("plazo",credito.getPlazo().getNumero());
         paramSource.addValue("tasaCambio",credito.getIngresoMensual().getTasaCambio());
         paramSource.addValue("valorPrestamo",credito.getValorPrestamo().getValor());

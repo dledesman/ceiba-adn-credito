@@ -1,5 +1,6 @@
 package com.ceiba.credito.modelo.entidad;
 
+import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.credito.modelo.enumeracion.EnumPlazo;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 
 import static com.ceiba.credito.modelo.entidad.CreditoTestDataBuilder.aCredito;
 import static com.ceiba.dinero.modelo.entidad.DineroTestDataBuilder.aDinero;
-import static com.ceiba.cliente.modelo.entidad.ClienteTestDataBuilder.aCliente;
+import static com.ceiba.cliente.modelo.entidad.DtoClienteTestDataBuilder.aDtoCliente;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreditoTest {
@@ -38,7 +39,7 @@ class CreditoTest {
     @DisplayName("Deberia crear credito correctamente")
     void deberiaCrearCreditoCorrectamente() {
         Credito credito = aCredito()
-                .conCliente(aCliente().conTipoIdentificacion(EnumTipoIdentificacion.CEDULA).conNumeroIdentificacion("02012").build())
+                .conCliente(new Cliente(null,EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"02012"))
                 .conIngresoMensual(aDinero().conValor(ingresoNormal).conTasaCambio(3491.12).build())
                 .conEgresoMensual(aDinero().conValor(egresoNormal).build())
                 .conPlazo(EnumPlazo.SEIS).build();

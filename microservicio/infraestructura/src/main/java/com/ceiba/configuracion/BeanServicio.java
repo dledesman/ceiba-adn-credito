@@ -1,5 +1,7 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
+import com.ceiba.cliente.servicio.ServicioConsultarCliente;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.credito.servicio.ServicioActualizarCredito;
 import com.ceiba.credito.servicio.ServicioCrearCredito;
@@ -34,7 +36,7 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioCrearCredito servicioCrearCredito(RepositorioCredito repositorioCredito) {
+    public ServicioCrearCredito servicioCrearCredito(RepositorioCredito repositorioCredito, RepositorioCliente repositorioCliente) {
         return new ServicioCrearCredito(repositorioCredito);
     }
 
@@ -46,5 +48,10 @@ public class BeanServicio {
     @Bean
     public ServicioEliminarCredito servicioEliminarCredito(RepositorioCredito repositorioCredito) {
         return new ServicioEliminarCredito(repositorioCredito);
+    }
+
+    @Bean
+    public ServicioConsultarCliente servicioConsultarCliente(RepositorioCliente repositorioCliente) {
+        return new ServicioConsultarCliente(repositorioCliente);
     }
 }

@@ -1,7 +1,8 @@
 package com.ceiba.credito.modelo.entidad;
 
 import com.ceiba.cliente.modelo.entidad.Cliente;
-import com.ceiba.cliente.modelo.entidad.ClienteTestDataBuilder;
+import com.ceiba.cliente.modelo.entidad.DtoClienteTestDataBuilder;
+import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.credito.modelo.enumeracion.EnumEstado;
 import com.ceiba.credito.modelo.enumeracion.EnumPlazo;
 import com.ceiba.dinero.modelo.entidad.Dinero;
@@ -23,7 +24,7 @@ public class CreditoTestDataBuilder {
     private EnumEstado estado;
 
     public CreditoTestDataBuilder() {
-        this.cliente = ClienteTestDataBuilder.aCliente().build();
+        this.cliente = new Cliente(null, EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"020120018");
         this.fechaSolicitud = LocalDate.now();
         this.ingresoMensual = DineroTestDataBuilder.aDinero()
                 .conValor(1500.00).conTasaCambio(3945.12).build();
