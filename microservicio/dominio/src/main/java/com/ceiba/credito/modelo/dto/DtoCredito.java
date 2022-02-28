@@ -14,7 +14,7 @@ public class DtoCredito {
     private Double valorDividendo;
     private String estado;
     private String tipoIdentificacion;
-    private long id;
+    private Long id;
     private LocalDate fechaSolicitud;
     private String numeroIdentificacion;
     private Double egresoMensual;

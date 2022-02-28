@@ -96,9 +96,10 @@ public class DtoCreditoTestDataBuilder {
     }
 
     public DtoCredito build() {
-        return new DtoCredito(this.id,this.numeroIdentificacion,this.tipoIdentificacion,
-                this.fechaSolicitud,this.ingresoMensual,this.egresoMensual,this.codigoMoneda,
-                this.plazo,this.valorPrestamo,this.valorDividendo,this.tasaCambio,this.fechaPrimeraCuota,this.estado);
+        return new DtoCredito(this.valorPrestamo, this.tasaCambio, this.fechaPrimeraCuota, this.valorDividendo, this.estado,
+                this.tipoIdentificacion, this.id, this.fechaSolicitud, this.numeroIdentificacion,
+                this.egresoMensual, this.ingresoMensual,
+                this.plazo,this.codigoMoneda);
 
     }
 

@@ -47,8 +47,9 @@ class DtoCreditoTest {
     @Test
     @DisplayName("Debería crear objeto DtoCredito correctamente")
     void deberiaCrearObjetoCorrectamente() {
-        dtoCredito = new DtoCredito(id,tipoIdentificacion,numeroIdentificacion,fechaSolicitud,ingresoMensual,
-            egresoMensual,codigoMoneda,plazo,tasaCambio,valorPrestamo,valorDividendo,fechaPrimeraCuota,estado);
+        dtoCredito = new DtoCredito(this.valorPrestamo, this.tasaCambio, this.fechaPrimeraCuota, this.valorDividendo, this.estado,
+                this.tipoIdentificacion, this.id, this.fechaSolicitud, this.numeroIdentificacion,
+                this.egresoMensual, this.ingresoMensual,this.plazo,this.codigoMoneda);
         assertEquals(id,dtoCredito.getId());
         assertEquals(tipoIdentificacion,dtoCredito.getTipoIdentificacion());
         assertEquals(numeroIdentificacion,dtoCredito.getNumeroIdentificacion());
