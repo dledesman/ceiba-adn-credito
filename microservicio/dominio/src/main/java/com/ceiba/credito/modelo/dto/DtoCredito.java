@@ -8,17 +8,17 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class DtoCredito {
-    private long id;
-    private String tipoIdentificacion;
-    private String numeroIdentificacion;
-    private LocalDate fechaSolicitud;
-    private Double ingresoMensual;
-    private Double egresoMensual;
-    private String codigoMoneda;
-    private Integer plazo;
-    private Double tasaCambio;
     private Double valorPrestamo;
-    private Double valorDividendo;
+    private Double tasaCambio;
     private LocalDate fechaPrimeraCuota;
+    private Double valorDividendo;
     private String estado;
+    private String tipoIdentificacion;
+    private long id;
+    private LocalDate fechaSolicitud;
+    private String numeroIdentificacion;
+    private Double egresoMensual;
+    private Double ingresoMensual;
+    private Integer plazo;
+    private String codigoMoneda;
 }
