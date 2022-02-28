@@ -19,9 +19,9 @@ class EnumPlazoTest {
     @Test
     @DisplayName("Debería devolver el código correspondiente a la enumeración enviada")
     void deberiaDevolverUnaEnumerionDeUnCodigo() {
-        EnumPlazo plazo = EnumPlazo.SEIS;
-        Integer codigo = plazo.getNumero();
-        assertEquals(6,codigo);
+        Integer codigo = 12;
+        EnumPlazo plazo = EnumPlazo.SEIS.getPlazo(codigo);
+        assertEquals(EnumPlazo.DOCE,plazo);
     }
 
 }
