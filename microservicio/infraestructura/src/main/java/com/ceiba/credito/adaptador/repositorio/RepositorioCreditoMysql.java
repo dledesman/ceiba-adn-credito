@@ -15,17 +15,17 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="credito", value="crear")
-    private static String sqlCrear;
-
     @SqlStatement(namespace="credito", value="actualizar")
     private static String sqlActualizar;
 
-    @SqlStatement(namespace="credito", value="eliminar")
-    private static String sqlEliminar;
+    @SqlStatement(namespace="credito", value="crear")
+    private static String sqlCrear;
 
     @SqlStatement(namespace="credito", value="existe")
     private static String sqlExiste;
+
+    @SqlStatement(namespace="credito", value="eliminar")
+    private static String sqlEliminar;
 
     @SqlStatement(namespace="credito", value="existePorId")
     private static String sqlExistePorId;
