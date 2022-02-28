@@ -17,9 +17,10 @@ class EnumTipoIdentificacionTest {
     @Test
     @DisplayName("Debería devolver el código correspondiente a la enumeración enviada")
     void deberiaDevolverUnaEnumerionDeUnCodigo() {
-        String codigo = "C";
-        EnumTipoIdentificacion tipoIdentificacion = EnumTipoIdentificacion.PASAPORTE.getTipoIdentificacion(codigo);
-        assertEquals(EnumTipoIdentificacion.CEDULA,tipoIdentificacion);
+        for(EnumTipoIdentificacion tipoIdentificacion: EnumTipoIdentificacion.values()) {
+            EnumTipoIdentificacion tipoBuscado = EnumTipoIdentificacion.PASAPORTE.getTipoIdentificacion(tipoIdentificacion.getCodigo());
+            assertEquals(tipoIdentificacion,tipoBuscado);
+        }
     }
 
 }

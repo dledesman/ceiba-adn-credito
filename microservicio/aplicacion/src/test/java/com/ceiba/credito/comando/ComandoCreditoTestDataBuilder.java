@@ -25,18 +25,15 @@ public class ComandoCreditoTestDataBuilder {
         return new ComandoCreditoTestDataBuilder();
     }
 
-    public ComandoCreditoTestDataBuilder conId(Long id) {
-        this.id = id;
-        return this;
-    }
+
 
     public ComandoCreditoTestDataBuilder conNumeroIdentificacion(String numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;
         return this;
     }
 
-    public ComandoCreditoTestDataBuilder conTipoIdentificacion(String tipoIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
+    public ComandoCreditoTestDataBuilder conId(Long id) {
+        this.id = id;
         return this;
     }
 
@@ -45,9 +42,8 @@ public class ComandoCreditoTestDataBuilder {
         return this;
     }
 
-
-    public ComandoCreditoTestDataBuilder conIngresoMensual(Double ingresoMensual) {
-        this.ingresoMensual = ingresoMensual;
+    public ComandoCreditoTestDataBuilder conTipoIdentificacion(String tipoIdentificacion) {
+        this.tipoIdentificacion = tipoIdentificacion;
         return this;
     }
 
@@ -56,13 +52,8 @@ public class ComandoCreditoTestDataBuilder {
         return this;
     }
 
-    public ComandoCreditoTestDataBuilder conPlazo(Integer plazo) {
-        this.plazo = plazo;
-        return this;
-    }
-
-    public ComandoCreditoTestDataBuilder conTasaCambio(Double tasaCambio) {
-        this.tasaCambio = tasaCambio;
+    public ComandoCreditoTestDataBuilder conIngresoMensual(Double ingresoMensual) {
+        this.ingresoMensual = ingresoMensual;
         return this;
     }
 
@@ -71,5 +62,16 @@ public class ComandoCreditoTestDataBuilder {
                 this.ingresoMensual,this.egresoMensual, this.codigoMoneda,
                 this.plazo,this.tasaCambio);
     }
+
+    public ComandoCreditoTestDataBuilder conTasaCambio(Double tasaCambio) {
+        this.tasaCambio = tasaCambio;
+        return this;
+    }
+
+    public ComandoCreditoTestDataBuilder conPlazo(Integer plazo) {
+        this.plazo = plazo;
+        return this;
+    }
+
 
 }
