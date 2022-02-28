@@ -5,9 +5,7 @@ import com.ceiba.credito.modelo.entidad.Credito;
 import com.ceiba.credito.puerto.repositorio.RepositorioCredito;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -16,9 +14,6 @@ import org.springframework.stereotype.Repository;
 public class RepositorioCreditoMysql implements RepositorioCredito {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-
-    @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @SqlStatement(namespace="credito", value="crear")
     private static String sqlCrear;
@@ -54,13 +49,18 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
         paramSource.addValue("fechaPrimeraCuota",credito.getFechaPrimeraCuota());
         paramSource.addValue("estado",credito.getEstado().getCodigo());
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        this.namedParameterJdbcTemplate.update(sqlCrear, paramSource,keyHolder,new String[] { "id" });
+        customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+            .update(sqlCrear, paramSource,keyHolder,new String[] { "id" });
         return keyHolder.getKey().longValue();
     }
 
     @Override
     public void actualizar(Credito credito) {
-        customNamedParameterJdbcTemplate.actualizar(credito, sqlActualizar);
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("idCliente", credito.getCliente().getId());
+        paramSource.addValue("estado",credito.getEstado().getCodigo());
+        customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+            .update(sqlActualizar, paramSource);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class ManejadorCrearCredito implements ManejadorComandoRespuesta<ComandoC
         Credito credito = this.fabricaCredito.crear(comando);
         DtoCliente dtoCliente =  servicioConsultarCliente.ejecutar(comando.getTipoIdentificacion(),
             comando.getNumeroIdentificacion());
-        credito.setId(dtoCliente.getId());
+        credito.getCliente().setId(dtoCliente.getId());
         return new ComandoRespuesta<>(servicioCrearCredito.ejecutar(credito));
     }
 }
