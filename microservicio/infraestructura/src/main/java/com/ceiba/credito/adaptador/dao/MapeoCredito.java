@@ -26,7 +26,7 @@ public class MapeoCredito implements RowMapper<DtoCredito>, MapperResult  {
         Double valorDividendo = resultSet.getDouble("valor_dividendo");
         LocalDate fechaPrimeraCuota = convertirDateToLocalDate(resultSet.getDate("fecha_primera_cuota"));
         String estado = resultSet.getString("estado");
-        return new DtoCredito(id, numeroIdentificacion, tipoIdentificacion, fechaSolicitud,
+        return new DtoCredito(id, tipoIdentificacion, numeroIdentificacion, fechaSolicitud,
                 ingresoMensual, egresoMensual, codigoMoneda, plazo, tasaCambio, valorPrestamo, valorDividendo, fechaPrimeraCuota, estado);
     }
 
