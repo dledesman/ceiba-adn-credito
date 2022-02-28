@@ -29,7 +29,7 @@ public class ComandoClienteTestDataBuilder {
     }
 
     public ComandoClienteTestDataBuilder conNumeroIdentificacion(String numeroIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
+        this.numeroIdentificacion = numeroIdentificacion;
         return this;
     }
 

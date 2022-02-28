@@ -27,7 +27,6 @@ class ManejadorCrearClienteTest {
     @Test
     @DisplayName("Deberia crear un cliente de manera satisfactoria")
     void deberiaCrearClienteCorrectamente() {
-        Long valorEsperado =15L;
         ComandoCliente comandoCliente = aComandoCliente().build();
         DtoCliente dtoCliente = new DtoCliente(15L, "C","02012");
         Mockito.when(servicioConsultarCliente.ejecutar(Mockito.anyString(), Mockito.anyString())).thenReturn(dtoCliente);

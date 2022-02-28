@@ -1,8 +1,5 @@
 package com.ceiba.credito.comando;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 public class ComandoCreditoTestDataBuilder {
     private Long id;
     private String numeroIdentificacion;
