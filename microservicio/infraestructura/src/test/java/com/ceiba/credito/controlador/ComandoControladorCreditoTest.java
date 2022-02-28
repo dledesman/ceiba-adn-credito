@@ -34,7 +34,7 @@ class ComandoControladorCreditoTest {
     @Test
     @DisplayName("Debería crear un crédito")
     void deberiaCrearUnCredito() throws Exception {
-        ComandoCredito comandoCredito = aComandoCredito().conNumeroIdentificacion("02017").build();
+        ComandoCredito comandoCredito = aComandoCredito().conNumeroIdentificacion("02017333").build();
         mockMvc.perform(post("/creditos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoCredito)))

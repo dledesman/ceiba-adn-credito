@@ -24,7 +24,7 @@ class ServicioConsultarClienteTest {
     @Test
     @DisplayName("Debería consultar un cliente previamente registrado un cliente correctamente")
     void deberiaConultarUnClienteCorrectamente() {
-        DtoCliente dtoClienteEsperado  = aDtoCliente().build();
+        DtoCliente dtoClienteEsperado  = aDtoCliente().conNumeroIdentificacion("56166").build();
         Mockito.when(repositorioCliente.consultar(dtoClienteEsperado.getTipoIdentificacion(),
                 dtoClienteEsperado.getNumeroIdentificacion())).thenReturn(dtoClienteEsperado);
         DtoCliente clienteDevuelto = servicioConsultarCliente.ejecutar(dtoClienteEsperado.getTipoIdentificacion(),

@@ -5,19 +5,19 @@ import com.ceiba.credito.modelo.dto.DtoCredito;
 import java.time.LocalDate;
 
 public class DtoCreditoTestDataBuilder {
-    private Long id;
     private String numeroIdentificacion;
-    private String tipoIdentificacion;
+    private Long id;
     private LocalDate fechaSolicitud;
-    private Double ingresoMensual;
+    private String tipoIdentificacion;
     private Double egresoMensual;
-    private String codigoMoneda;
+    private Double ingresoMensual;
     private Integer plazo;
-    private Double valorPrestamo;
+    private String codigoMoneda;
     private Double valorDividendo;
-    private Double tasaCambio;
+    private Double valorPrestamo;
     private LocalDate fechaPrimeraCuota;
     private String estado;
+    private Double tasaCambio;
 
     public DtoCreditoTestDataBuilder() {
         this.tipoIdentificacion = "C";
