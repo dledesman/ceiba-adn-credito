@@ -1,3 +1,5 @@
-select id, tipo_identificacion, numero_identificacion, fecha_solicitud, ingreso_mensual, egreso_mensual,
-        codigo_moneda, plazo, tasa_cambio, valor_prestamo, valor_dividendo, fecha_primera_cuota, estado
-from credito
+select cre.id, cli.tipo_identificacion, cli.numero_identificacion, cre.fecha_solicitud,
+        cre.ingreso_mensual, cre.egreso_mensual, cre.codigo_moneda, cre.plazo,
+        cre.tasa_cambio, cre.valor_prestamo, cre.valor_dividendo, cre.fecha_primera_cuota, cre.estado
+from credito cre, cliente cli
+where cre.id_cliente = cli.id;

@@ -1,2 +1,4 @@
 select count(1) from credito
-where id_cliente = :cliente
+where id_cliente = :idCliente;
+
+

@@ -38,10 +38,10 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
     public Long crear(Credito credito) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("idCliente", credito.getCliente().getId());
-        paramSource.addValue("fechaSolicitud", credito.getCliente().getId());
+        paramSource.addValue("fechaSolicitud", credito.getFechaSolicitud());
         paramSource.addValue("ingresoMensual",credito.getIngresoMensual().getValor());
         paramSource.addValue("egresoMensual",credito.getEgresoMensual().getValor());
-        paramSource.addValue("codigoMoneda",credito.getIngresoMensual().getMoneda());
+        paramSource.addValue("codigoMoneda",credito.getIngresoMensual().getMoneda().getCodigo());
         paramSource.addValue("plazo",credito.getPlazo().getNumero());
         paramSource.addValue("tasaCambio",credito.getIngresoMensual().getTasaCambio());
         paramSource.addValue("valorPrestamo",credito.getValorPrestamo().getValor());
@@ -57,7 +57,7 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
     @Override
     public void actualizar(Credito credito) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idCliente", credito.getCliente().getId());
+        paramSource.addValue("id", credito.getId());
         paramSource.addValue("estado",credito.getEstado().getCodigo());
         customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
             .update(sqlActualizar, paramSource);
@@ -73,7 +73,7 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
     @Override
     public boolean existe(Cliente cliente) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cliente", cliente.getId());
+        paramSource.addValue("idCliente", cliente.getId());
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
