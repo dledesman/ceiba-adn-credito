@@ -1,13 +1,13 @@
 package com.ceiba.cliente.modelo.entidad;
 
-import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.ceiba.cliente.modelo.entidad.DtoClienteTestDataBuilder.aDtoCliente;
 import static com.ceiba.cliente.modelo.entidad.ClienteTestDataBuilder.aCliente;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ClienteTest {
 
