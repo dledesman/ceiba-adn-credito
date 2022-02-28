@@ -38,7 +38,6 @@ class MapeoCreditoTest {
     void inicializar() {
         resultSet = Mockito.mock(ResultSet.class);
         mapeoCredito = new MapeoCredito();
-        dtoCredito = new DtoCredito();
         numeroIdentificacion = "02012";
         tipoIdentificacion = "C";
         fechaSolicitud = convertirDateToLocalDate(new Date());
