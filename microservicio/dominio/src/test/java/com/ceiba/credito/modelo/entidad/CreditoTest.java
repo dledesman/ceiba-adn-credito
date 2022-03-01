@@ -24,6 +24,7 @@ class CreditoTest {
     Double egresoNormal;
     Double ingresoNegativo;
     Double egresoSuperior;
+    Credito credito;
 
     @BeforeEach
     public void inicializar() {
@@ -38,7 +39,7 @@ class CreditoTest {
     @Test
     @DisplayName("Deberia crear credito correctamente")
     void deberiaCrearCreditoCorrectamente() {
-        Credito credito = aCredito()
+        credito = aCredito()
                 .conCliente(new Cliente(null,EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"02012"))
                 .conIngresoMensual(aDinero().conValor(ingresoNormal).conTasaCambio(3491.12).build())
                 .conEgresoMensual(aDinero().conValor(egresoNormal).build())
@@ -56,7 +57,7 @@ class CreditoTest {
     @DisplayName("Debería lanzar excepción por cliente nulo")
     void deberiaLanzarExcepcionPorNumeroIdentificacionNula() {
         try {
-            Credito credito = aCredito()
+            credito = aCredito()
                     .conCliente(null).build();
             fail("Debería lanzar excepción por cliente nulo");
         } catch (ExcepcionValorObligatorio ex) {
@@ -68,7 +69,7 @@ class CreditoTest {
     @DisplayName("Debería lanzar excepción por valor de ingresos negativo")
     void deberiaLanzarExcepcionPorValorDeIngresoNulo() {
         try {
-            Credito credito = aCredito()
+            credito = aCredito()
                     .conIngresoMensual(aDinero().conValor(-1.00).build()).build();
             fail("Debería lanzar excepción por valor de ingresos nulo");
         } catch (ExcepcionValorInvalido ex) {
@@ -80,7 +81,7 @@ class CreditoTest {
     @DisplayName("Debería lanzar excepción por valor de egresos negativo")
     void deberiaLanzarExcepcionPorValorDeEgresoNulo() {
         try {
-            Credito credito = aCredito()
+            credito = aCredito()
                     .conIngresoMensual(aDinero().conValor(1500.00).build())
                     .conEgresoMensual(aDinero().conValor(-1.00).build()).build();
             fail("Debería lanzar excepción por valor de egresos nulo");
@@ -93,7 +94,7 @@ class CreditoTest {
     @DisplayName("Debería lanzar excepción por egreso mayor que ingreso")
     void deberiaLanzarExcepcionPorEgresoMayorQueIngreso() {
         try {
-            Credito credito = aCredito()
+            credito = aCredito()
                     .conIngresoMensual(aDinero().conValor(ingresoNormal).build())
                     .conEgresoMensual(aDinero().conValor(egresoSuperior).build()).build();
             fail("Debería lanzar excepción por egreso mayor que ingreso");
@@ -106,7 +107,7 @@ class CreditoTest {
     @DisplayName("Debería lanzar excepción por plazo nulo")
     void deberiaLanzarExcepcionPorPlazoNulo() {
         try {
-            Credito credito = aCredito()
+            credito = aCredito()
                     .conPlazo(null).build();
             fail("Debería lanzar excepción por plazo nulo");
         } catch (ExcepcionValorObligatorio ex) {
@@ -118,7 +119,7 @@ class CreditoTest {
     @DisplayName("Debería lanzar excepción por tasa de cambio nula")
     void deberiaLanzarExcepcionPorTasaCambioNula() {
         try {
-            Credito credito = aCredito().conIngresoMensual(aDinero().conValor(1500.00)
+            credito = aCredito().conIngresoMensual(aDinero().conValor(1500.00)
                     .conTasaCambio(null).build()).build();
             fail("Debería lanzar excepción por tasa de cambio nula");
         } catch (ExcepcionValorObligatorio ex) {
@@ -129,7 +130,7 @@ class CreditoTest {
     @Test
     @DisplayName("Debería calcular el valor del crédito y la fecha de vencimiento de la primera cuota")
     void deberiaCalcularValorPrestamoYFechaVencimiento() {
-        Credito credito = aCredito().conIngresoMensual(aDinero().conValor(2300.00)
+        credito = aCredito().conIngresoMensual(aDinero().conValor(2300.00)
                 .conTasaCambio(3981.25).build())
                 .conEgresoMensual(aDinero().conValor(2000.00).build())
                 .conPlazo(EnumPlazo.DOCE)
