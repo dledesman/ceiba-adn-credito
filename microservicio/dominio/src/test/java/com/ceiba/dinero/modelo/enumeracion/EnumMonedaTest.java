@@ -1,6 +1,5 @@
 package com.ceiba.dinero.modelo.enumeracion;
 
-import com.ceiba.credito.modelo.enumeracion.EnumEstado;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +19,10 @@ class EnumMonedaTest {
     @Test
     @DisplayName("Debería devolver el código correspondiente a la enumeración enviada")
     void deberiaDevolverUnaEnumerionDeUnCodigo() {
-        String codigo = "USD";
-        EnumMoneda moneda = EnumMoneda.EURO.getMoneda(codigo);
-        assertEquals(EnumMoneda.DOLAR.getMoneda(codigo),moneda);
+        for(EnumMoneda moneda: EnumMoneda.values()) {
+            EnumMoneda monedaBuscada = EnumMoneda.EURO.getMoneda(moneda.getCodigo());
+            assertEquals(moneda,monedaBuscada);
+        }
     }
 
 }
