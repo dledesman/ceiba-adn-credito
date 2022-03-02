@@ -33,7 +33,6 @@ class DtoCreditoTest {
         numeroIdentificacion="02012";
         fechaSolicitud=LocalDate.now();
         ingresoMensual=1500.00;
-        codigoMoneda="USD";
         egresoMensual=950.00;
         codigoMoneda="USD";
         plazo=6;
@@ -47,9 +46,8 @@ class DtoCreditoTest {
     @Test
     @DisplayName("Debería crear objeto DtoCredito correctamente")
     void deberiaCrearObjetoCorrectamente() {
-        dtoCredito = new DtoCredito(this.valorPrestamo, this.tasaCambio, this.fechaPrimeraCuota, this.valorDividendo, this.estado,
-                this.tipoIdentificacion, this.id, this.fechaSolicitud, this.numeroIdentificacion,
-                this.egresoMensual, this.ingresoMensual,this.plazo,this.codigoMoneda);
+        dtoCredito = new DtoCredito(id, tipoIdentificacion, numeroIdentificacion, fechaSolicitud, ingresoMensual, egresoMensual,
+                codigoMoneda, tasaCambio, plazo, valorPrestamo, valorDividendo, fechaPrimeraCuota, estado);
         assertEquals(id,dtoCredito.getId());
         assertEquals(tipoIdentificacion,dtoCredito.getTipoIdentificacion());
         assertEquals(numeroIdentificacion,dtoCredito.getNumeroIdentificacion());
