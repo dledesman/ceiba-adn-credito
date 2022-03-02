@@ -1,5 +1,6 @@
 package com.ceiba.cliente.modelo.enumeracion;
 
+import com.ceiba.dinero.modelo.enumeracion.EnumMoneda;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,9 +18,9 @@ class EnumTipoIdentificacionTest {
     @Test
     @DisplayName("Debería devolver el código correspondiente a la enumeración enviada")
     void deberiaDevolverUnaEnumerionDeUnCodigo() {
-        for(EnumTipoIdentificacion tipoIdentificacion: EnumTipoIdentificacion.values()) {
-            EnumTipoIdentificacion tipoBuscado = EnumTipoIdentificacion.PASAPORTE.getTipoIdentificacion(tipoIdentificacion.getCodigo());
-            assertEquals(tipoIdentificacion,tipoBuscado);
+        for(EnumMoneda moneda: EnumMoneda.values()) {
+            EnumMoneda monedaBuscada = EnumMoneda.DOLAR.getMoneda(moneda.getCodigo());
+            assertEquals(moneda,monedaBuscada);
         }
     }
 
