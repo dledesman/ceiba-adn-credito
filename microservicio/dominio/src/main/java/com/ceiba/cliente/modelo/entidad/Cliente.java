@@ -2,11 +2,13 @@ package com.ceiba.cliente.modelo.entidad;
 
 import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import static  com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class Cliente {
 
     private static final String TIPO_DE_IDENTIFICACION_OBLIGATORIO = "El tipo de identificación es obligatorio";
@@ -15,7 +17,7 @@ public class Cliente {
     private EnumTipoIdentificacion tipoIdentificacion;
     private String numeroIdentificacion;
 
-    public Cliente() {}
+
     public Cliente(Long id, EnumTipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
         validarObligatorio(tipoIdentificacion,TIPO_DE_IDENTIFICACION_OBLIGATORIO);
         validarObligatorio(numeroIdentificacion,NUMERO_DE_IDENTIFICACION_OBLIGATORIO);
