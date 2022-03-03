@@ -2,6 +2,7 @@ package com.ceiba.cliente.adaptador.repositorio;
 
 import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.cliente.modelo.entidad.DtoCliente;
+import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
@@ -12,6 +13,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class RepositorioClienteMySql implements RepositorioCliente {
@@ -43,9 +46,20 @@ public class RepositorioClienteMySql implements RepositorioCliente {
 
     @Override
     public DtoCliente consultar(String tipoIdentificacion, String numeroIdentificacion) {
+        Optional<DtoCliente> oCliente = ejecutarConsulta(tipoIdentificacion, numeroIdentificacion);
+        return oCliente.isPresent() ? oCliente.get()
+                : crear(new Cliente(null, EnumTipoIdentificacion.CEDULA.getTipoIdentificacion(tipoIdentificacion), numeroIdentificacion));
+    }
+
+    private Optional<DtoCliente> ejecutarConsulta(String tipoIdentificacion, String numeroIdentificacion) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("tipoIdentificacion", tipoIdentificacion);
         paramSource.addValue("numeroIdentificacion", numeroIdentificacion);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class));
+        try {
+            return Optional.ofNullable(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                    .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
+        } catch (Exception ex) {
+            return Optional.empty();
+        }
     }
 }

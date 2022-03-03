@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/creditos")
 @Api(tags = {"Controlador comando credito"})
+@CrossOrigin(origins = "http://localhost:4200")
 public class ComandoControladorCredito {
 
     private final ManejadorCrearCredito manejadorCrearCredito;

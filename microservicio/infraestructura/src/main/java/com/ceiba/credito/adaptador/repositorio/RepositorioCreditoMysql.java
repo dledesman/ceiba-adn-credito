@@ -10,6 +10,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class RepositorioCreditoMysql implements RepositorioCredito {
 
@@ -51,7 +53,8 @@ public class RepositorioCreditoMysql implements RepositorioCredito {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
             .update(sqlCrear, paramSource,keyHolder,new String[] { "id" });
-        return keyHolder.getKey().longValue();
+        Optional<Long> resultado = Optional.ofNullable(keyHolder.getKey().longValue());
+        return resultado.isPresent() ? resultado.get() : 0L;
     }
 
     @Override
