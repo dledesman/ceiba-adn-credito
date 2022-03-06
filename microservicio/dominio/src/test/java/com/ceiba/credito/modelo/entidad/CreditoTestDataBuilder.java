@@ -25,7 +25,7 @@ public class CreditoTestDataBuilder {
 
     public CreditoTestDataBuilder() {
         this.cliente = new Cliente(null, EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"020120018");
-        this.fechaSolicitud = LocalDate.now();
+        this.fechaSolicitud = LocalDate.of(2022,03,10);
         this.ingresoMensual = DineroTestDataBuilder.aDinero()
                 .conValor(1500.00).conTasaCambio(3945.12).build();
         this.egresoMensual = DineroTestDataBuilder.aDinero()

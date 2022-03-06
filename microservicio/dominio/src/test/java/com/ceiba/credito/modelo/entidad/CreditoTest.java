@@ -50,8 +50,27 @@ class CreditoTest {
         assertEquals(950.00, credito.getEgresoMensual().getValor());
         assertEquals(6, credito.getPlazo().getNumero());
         assertEquals(3491.12, credito.getIngresoMensual().getTasaCambio());
+        credito.setId(1000L);
     }
 
+
+    @Test
+    @DisplayName("Deberia crear credito correctamente con valor de prestamo")
+    void deberiaCrearCreditoCorrectamenteConVencimientoEntreSemana() {
+        credito = aCredito()
+                .conCliente(new Cliente(null,EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"02012"))
+                .conIngresoMensual(aDinero().conValor(ingresoNormal).conTasaCambio(3491.12).build())
+                .conEgresoMensual(aDinero().conValor(egresoNormal).build())
+                .conValorPrestamo(aDinero().conValor(5674.00).build())
+                .conFechaSolicitud(LocalDate.of(2022,04,10))
+                .conPlazo(EnumPlazo.SEIS).build();
+        assertEquals("C", credito.getCliente().getTipoIdentificacion().getCodigo());
+        assertEquals("02012", credito.getCliente().getNumeroIdentificacion());
+        assertEquals(1500.00, credito.getIngresoMensual().getValor());
+        assertEquals(950.00, credito.getEgresoMensual().getValor());
+        assertEquals(6, credito.getPlazo().getNumero());
+        assertEquals(3491.12, credito.getIngresoMensual().getTasaCambio());
+    }
 
     @Test
     @DisplayName("Debería lanzar excepción por cliente nulo")

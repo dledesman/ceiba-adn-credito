@@ -24,7 +24,8 @@ class ClienteTest {
     @Test
     @DisplayName("Deberia crear un cliente y asignar el codigo")
     void deberiaCrearUnClienteSatisfactoriamenteYAsignarCodigo() {
-        cliente = aCliente().conTipoIdentificacion(EnumTipoIdentificacion.CEDULA).conNumeroIdentificacion("010120018").build();
+        cliente = aCliente().conTipoIdentificacion(EnumTipoIdentificacion.CEDULA)
+                .conNumeroIdentificacion("010120018").build();
         cliente.setId(10l);
         assertEquals(10,cliente.getId());
     }
