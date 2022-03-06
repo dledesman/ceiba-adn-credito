@@ -53,7 +53,7 @@ public class RepositorioClienteMySql implements RepositorioCliente {
         try {
             oCliente = ejecutarConsulta(tipoIdentificacion, numeroIdentificacion);
         } catch (ExcepcionTecnica ex) {
-            LOG.warning(ex.getMessage());
+            LOG.info(ex.getMessage());
         }
         return oCliente.isPresent() ? oCliente.get()
                 : crear(new Cliente(null, EnumTipoIdentificacion.CEDULA.getTipoIdentificacion(tipoIdentificacion), numeroIdentificacion));
@@ -68,7 +68,7 @@ public class RepositorioClienteMySql implements RepositorioCliente {
             return Optional.of(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
         } catch (Exception ex) {
-            throw new ExcepcionTecnica("Cliente no existe, será creado");
+            throw new ExcepcionTecnica("Cliente no existe, será creado",ex);
         }
     }
 }
