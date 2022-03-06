@@ -15,11 +15,13 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Repository
 public class RepositorioClienteMySql implements RepositorioCliente {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+    private static Logger logger = Logger.getLogger("RepositorioClienteMySql.class");
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -56,10 +58,11 @@ public class RepositorioClienteMySql implements RepositorioCliente {
         paramSource.addValue("tipoIdentificacion", tipoIdentificacion);
         paramSource.addValue("numeroIdentificacion", numeroIdentificacion);
         try {
-            return Optional.ofNullable(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+            return Optional.of(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
         } catch (Exception ex) {
-            ex.fillInStackTrace();
+
+            logger.warning("Cliente no existe, será creado");
             return Optional.empty();
         }
     }
