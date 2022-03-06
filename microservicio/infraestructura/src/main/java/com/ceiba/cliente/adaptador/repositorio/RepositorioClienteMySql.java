@@ -59,6 +59,7 @@ public class RepositorioClienteMySql implements RepositorioCliente {
             return Optional.ofNullable(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
         } catch (Exception ex) {
+            ex.fillInStackTrace();
             return Optional.empty();
         }
     }

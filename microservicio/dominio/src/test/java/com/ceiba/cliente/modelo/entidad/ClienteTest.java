@@ -37,7 +37,7 @@ class ClienteTest {
     @DisplayName("Deberia lanzar una excepción por el numero de identificación nulo")
     void deberiaLanzarExcepcionPorNumeroDeIdentificacionNulo() {
         try {
-            Cliente cliente = aCliente().conNumeroIdentificacion(null).build();
+            Cliente cliente = aCliente().conCodigo(10L).conNumeroIdentificacion(null).build();
             fail("Deberia lanzar una excepción por el numero de identificación nulo");
         } catch (ExcepcionValorObligatorio ex) {
             assertEquals("El número de identificación es obligatorio",ex.getMessage());
