@@ -4,7 +4,6 @@ import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.cliente.modelo.entidad.DtoCliente;
 import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
-import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +48,7 @@ public class RepositorioClienteMySql implements RepositorioCliente {
 
     @Override
     public DtoCliente consultar(String tipoIdentificacion, String numeroIdentificacion) {
-        Optional<DtoCliente> oCliente = Optional.empty();
-        try {
-            oCliente = ejecutarConsulta(tipoIdentificacion, numeroIdentificacion);
-        } catch (ExcepcionTecnica ex) {
-            LOG.info(ex.getMessage());
-        }
+        Optional<DtoCliente> oCliente = ejecutarConsulta(tipoIdentificacion, numeroIdentificacion);
         return oCliente.isPresent() ? oCliente.get()
                 : crear(new Cliente(null, EnumTipoIdentificacion.CEDULA.getTipoIdentificacion(tipoIdentificacion), numeroIdentificacion));
 
@@ -65,10 +59,11 @@ public class RepositorioClienteMySql implements RepositorioCliente {
         paramSource.addValue("tipoIdentificacion", tipoIdentificacion);
         paramSource.addValue("numeroIdentificacion", numeroIdentificacion);
         try {
-            return Optional.of(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+            return Optional.ofNullable(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
         } catch (Exception ex) {
-            throw new ExcepcionTecnica("Cliente no existe, será creado",ex);
+            LOG.info(ex.getMessage());
+            return Optional.empty();
         }
     }
 }
