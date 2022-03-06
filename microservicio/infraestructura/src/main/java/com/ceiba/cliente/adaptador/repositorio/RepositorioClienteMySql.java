@@ -4,6 +4,7 @@ import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.cliente.modelo.entidad.DtoCliente;
 import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
+import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
 public class RepositorioClienteMySql implements RepositorioCliente {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-    private static Logger logger = Logger.getLogger("RepositorioClienteMySql.class");
+    private static final Logger LOG = Logger.getLogger("RepositorioClienteMySql.class");
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -48,9 +49,15 @@ public class RepositorioClienteMySql implements RepositorioCliente {
 
     @Override
     public DtoCliente consultar(String tipoIdentificacion, String numeroIdentificacion) {
-        Optional<DtoCliente> oCliente = ejecutarConsulta(tipoIdentificacion, numeroIdentificacion);
+        Optional<DtoCliente> oCliente = Optional.empty();
+        try {
+            oCliente = ejecutarConsulta(tipoIdentificacion, numeroIdentificacion);
+        } catch (ExcepcionTecnica ex) {
+            LOG.warning(ex.getMessage());
+        }
         return oCliente.isPresent() ? oCliente.get()
                 : crear(new Cliente(null, EnumTipoIdentificacion.CEDULA.getTipoIdentificacion(tipoIdentificacion), numeroIdentificacion));
+
     }
 
     private Optional<DtoCliente> ejecutarConsulta(String tipoIdentificacion, String numeroIdentificacion) {
@@ -61,9 +68,7 @@ public class RepositorioClienteMySql implements RepositorioCliente {
             return Optional.of(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
         } catch (Exception ex) {
-
-            logger.warning("Cliente no existe, será creado");
-            return Optional.empty();
+            throw new ExcepcionTecnica("Cliente no existe, será creado");
         }
     }
 }
