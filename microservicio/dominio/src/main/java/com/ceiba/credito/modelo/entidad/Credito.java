@@ -55,13 +55,13 @@ public class Credito {
     }
 
     private void calcularValorPrestamo() {
-        if (null == this.valorPrestamo || this.valorPrestamo.getValor() == 0) {
+        if (null == this.valorDividendo || this.valorPrestamo.getValor() == 0) {
             Double plazoCredito = Double.parseDouble(this.getPlazo().getNumero().toString());
             this.valorDividendo = new Dinero(getIngresoMensual().getMoneda(),
                 this.getIngresoMensual().getValor() - this.getEgresoMensual().getValor(),
                       getIngresoMensual().getTasaCambio());
             double montoAprobado = Math.round(this.getValorDividendo().getValor() * (1 - Math.pow(FACTOR_DE_TIEMPO , plazoCredito)) / (FACTOR_DE_INTERES));
-            valorPrestamo = new Dinero(getIngresoMensual().getMoneda(),montoAprobado,
+            this.valorPrestamo = new Dinero(getIngresoMensual().getMoneda(),montoAprobado,
                     getIngresoMensual().getTasaCambio());
             fechaPrimeraCuota = (determinarFechaVencimientoPrimeroCuota(this.fechaSolicitud));
         }
