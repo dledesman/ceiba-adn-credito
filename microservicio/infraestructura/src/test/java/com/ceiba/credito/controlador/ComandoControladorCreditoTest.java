@@ -2,6 +2,7 @@ package com.ceiba.credito.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.credito.comando.ComandoCredito;
+import com.ceiba.credito.modelo.dto.DtoMensajeRespuesta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,12 +35,12 @@ class ComandoControladorCreditoTest {
     @Test
     @DisplayName("Debería crear un crédito")
     void deberiaCrearUnCredito() throws Exception {
+        DtoMensajeRespuesta dtoMensajeRespuesta = new DtoMensajeRespuesta("5","registro exitoso");
         ComandoCredito comandoCredito = aComandoCredito().conNumeroIdentificacion("02017333").build();
         mockMvc.perform(post("/creditos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoCredito)))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 5}"));
+                .andExpect(status().isOk());
     }
 
     @Test
