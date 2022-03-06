@@ -30,6 +30,7 @@ public class CreditoTestDataBuilder {
                 .conValor(1500.00).conTasaCambio(3945.12).build();
         this.egresoMensual = DineroTestDataBuilder.aDinero()
                 .conValor(1200.00).conTasaCambio(3945.12).build();
+        this.estado = EnumEstado.INGRESADO;
         this.plazo = EnumPlazo.SEIS;
         this.fechaSolicitud = LocalDate.now();
     }

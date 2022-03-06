@@ -83,6 +83,9 @@ public class Credito {
         return fechaUltimoDiaSiguienteMes;
     }
 
+    public void setEstado(EnumEstado estado) {
+        this.estado = estado;
+    }
     public void setId(Long id) {
         this.id = id;
     }

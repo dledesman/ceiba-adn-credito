@@ -2,6 +2,7 @@ package com.ceiba.credito.modelo.entidad;
 
 import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
+import com.ceiba.credito.modelo.enumeracion.EnumEstado;
 import com.ceiba.credito.modelo.enumeracion.EnumPlazo;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
@@ -50,19 +51,40 @@ class CreditoTest {
         assertEquals(950.00, credito.getEgresoMensual().getValor());
         assertEquals(6, credito.getPlazo().getNumero());
         assertEquals(3491.12, credito.getIngresoMensual().getTasaCambio());
+        assertEquals(EnumEstado.INGRESADO, credito.getEstado());
         credito.setId(1000L);
     }
 
 
     @Test
     @DisplayName("Deberia crear credito correctamente con valor de prestamo")
-    void deberiaCrearCreditoCorrectamenteConVencimientoEntreSemana() {
+    void deberiaCrearCreditoCorrectamenteConDiaVencimientoEntreSemana() {
         credito = aCredito()
                 .conCliente(new Cliente(null,EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"02012"))
                 .conIngresoMensual(aDinero().conValor(ingresoNormal).conTasaCambio(3491.12).build())
                 .conEgresoMensual(aDinero().conValor(egresoNormal).build())
                 .conValorPrestamo(aDinero().conValor(5674.00).build())
-                .conFechaSolicitud(LocalDate.of(2022,04,10))
+                .conValorDividendo(aDinero().conValor(450.00).build())
+                .conFechaSolicitud(LocalDate.of(2022,4,10))
+                .conPlazo(EnumPlazo.SEIS).build();
+        assertEquals("C", credito.getCliente().getTipoIdentificacion().getCodigo());
+        assertEquals("02012", credito.getCliente().getNumeroIdentificacion());
+        assertEquals(1500.00, credito.getIngresoMensual().getValor());
+        assertEquals(950.00, credito.getEgresoMensual().getValor());
+        assertEquals(6, credito.getPlazo().getNumero());
+        assertEquals(3491.12, credito.getIngresoMensual().getTasaCambio());
+    }
+
+    @Test
+    @DisplayName("Deberia crear credito correctamente con valor de prestamo")
+    void deberiaCrearCreditoCorrectamenteConDiaVencimientoDomingo() {
+        credito = aCredito()
+                .conCliente(new Cliente(null,EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"02012"))
+                .conIngresoMensual(aDinero().conValor(ingresoNormal).conTasaCambio(3491.12).build())
+                .conEgresoMensual(aDinero().conValor(egresoNormal).build())
+                .conValorPrestamo(aDinero().conValor(5674.00).build())
+                .conValorDividendo(aDinero().conValor(450.00).build())
+                .conFechaSolicitud(LocalDate.of(2021,9,10))
                 .conPlazo(EnumPlazo.SEIS).build();
         assertEquals("C", credito.getCliente().getTipoIdentificacion().getCodigo());
         assertEquals("02012", credito.getCliente().getNumeroIdentificacion());
