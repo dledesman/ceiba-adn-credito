@@ -44,9 +44,13 @@ class CreditoTest {
                 .conCliente(new Cliente(null,EnumTipoIdentificacion.CEDULA.getTipoIdentificacion("C"),"02012"))
                 .conIngresoMensual(aDinero().conValor(ingresoNormal).conTasaCambio(3491.12).build())
                 .conEgresoMensual(aDinero().conValor(egresoNormal).build())
+                .conFechaSolicitud(LocalDate.of(2022,03,10))
                 .conPlazo(EnumPlazo.SEIS).build();
+        credito.setId(1000L);
+        credito.setEstado(EnumEstado.INGRESADO);
         assertEquals("C", credito.getCliente().getTipoIdentificacion().getCodigo());
         assertEquals("02012", credito.getCliente().getNumeroIdentificacion());
+        assertEquals(LocalDate.of(2022,03,10), credito.getFechaSolicitud());
         assertEquals(1500.00, credito.getIngresoMensual().getValor());
         assertEquals(950.00, credito.getEgresoMensual().getValor());
         assertEquals(6, credito.getPlazo().getNumero());
