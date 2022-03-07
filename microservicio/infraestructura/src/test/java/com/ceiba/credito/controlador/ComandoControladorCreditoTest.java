@@ -3,7 +3,12 @@ package com.ceiba.credito.controlador;
 import com.ceiba.ApplicationMock;
 import com.ceiba.credito.comando.ComandoCredito;
 import com.ceiba.credito.modelo.dto.DtoMensajeRespuesta;
+import com.ceiba.dinero.modelo.entidad.Dinero;
+import com.ceiba.dinero.modelo.enumeracion.EnumMoneda;
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,6 +46,20 @@ class ComandoControladorCreditoTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoCredito)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Debería lanzar una excepción por el valor de egresos mayor que el de ingresos")
+    void deberiaLanzarExcepcionPorValorEgeresoMayorAIngreso() throws Exception {
+        DtoMensajeRespuesta dtoMensajeRespuesta = new DtoMensajeRespuesta("5","registro exitoso");
+        ComandoCredito comandoCredito = aComandoCredito()
+                .conNumeroIdentificacion("02017333")
+                .conEgresoMensual(3000.00).build();
+        mockMvc.perform(post("/creditos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoCredito)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'codigo': '000','descripcion': 'El valor de egeresos  mensuales debe ser menor que los ingresos'}"));
     }
 
     @Test
