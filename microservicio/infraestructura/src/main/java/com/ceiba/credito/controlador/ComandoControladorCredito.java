@@ -8,6 +8,8 @@ import com.ceiba.credito.comando.manejador.ManejadorEliminarCredito;
 import com.ceiba.credito.modelo.dto.DtoMensajeRespuesta;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ public class ComandoControladorCredito {
     private final ManejadorCrearCredito manejadorCrearCredito;
     private final ManejadorActualizarCredito manejadorActualizarCredito;
     private final ManejadorEliminarCredito manejadorEliminarCredito;
+    private static final Logger LOG = LoggerFactory.getLogger(ComandoControladorCredito.class);
 
     @Autowired
     public ComandoControladorCredito(ManejadorCrearCredito manejadorCrearCredito,
@@ -44,6 +47,7 @@ public class ComandoControladorCredito {
             return ResponseEntity.ok(dtoRespuesta);
         } catch (ExcepcionValorInvalido | ExcepcionDuplicidad ex ) {
             dtoRespuesta = new DtoMensajeRespuesta("000",ex.getMessage());
+            LOG.info(ex.getMessage(), ex);
         }
         return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dtoRespuesta);
     }

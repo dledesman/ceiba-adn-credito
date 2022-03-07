@@ -6,6 +6,8 @@ import com.ceiba.cliente.modelo.enumeracion.EnumTipoIdentificacion;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -15,13 +17,12 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Repository
 public class RepositorioClienteMySql implements RepositorioCliente {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-    private static final Logger LOG = Logger.getLogger("RepositorioClienteMySql.class");
+    private static  final Logger LOG = LoggerFactory.getLogger(RepositorioClienteMySql.class);
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -62,7 +63,7 @@ public class RepositorioClienteMySql implements RepositorioCliente {
             return Optional.ofNullable(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlExiste, paramSource, BeanPropertyRowMapper.newInstance(DtoCliente.class)));
         } catch (Exception ex) {
-            LOG.info(ex.getMessage());
+            LOG.info(ex.getMessage(), ex);
             return Optional.empty();
         }
     }
